@@ -1,5 +1,6 @@
 /* styles.css */
-* {
+body {
     background-color: darkslategray;
+    text-align:center;
 }
 /* Add styles here to customize the appearance of your app */

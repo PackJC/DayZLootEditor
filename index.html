@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-    <link href="./styles.css" rel="stylesheet">
-    <title>DayZ XML Editor Tool</title>
+      <link href="./styles.css" rel="stylesheet">
+      <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+      <title>DayZ XML Editor</title>
   </head>
   <body style="text-align:center;">
 
-  <img src="./media/DayZLogo.PNG" />
-  <div style="border:1px solid #000;text-align: center;padding: 5%">
-      <h1>Drop type.xml here to configure loot table</h1>
-      <p>+</p>
-      <button type="button" onclick="alert('Hello world!')">Save</button>
-    </div>
+  <img src="./media/DayZLogo.PNG"  alt="DayZ Logo"/>
+  <div style="border:1px solid #000;text-align: center;padding: 5%; margin: 5%;">
+      <h1>Drag .XML File HERE</h1>
+      <button type="button" class="btn btn-warning">Import</button>
+
+  </div>
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
