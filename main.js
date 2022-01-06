@@ -7,7 +7,7 @@ function createWindow () {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    autoHideMenuBar: false,
+    autoHideMenuBar: true,
     icon: './media/DayZLogo.PNG',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
@@ -16,6 +16,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+  mainWindow.webContents.openDevTools();
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
