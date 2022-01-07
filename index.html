@@ -6,14 +6,57 @@
     <link href="./node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <link href="./styles.css" rel="stylesheet">
 
+    <nav class="navbar navbar-expand navbar-light bg-dark">
+        <ul class="navbar-nav p-3 ">
+          <li class="nav-item align-self-center p-3">
+            <img src="./media/DayZLogo.png" class="img-fluid " alt="DayZ Logo"/>
+          </li>
+          <li class="nav-item p-3 align-self-center active">
+            <a class="nav-link btn btn-warning" href="#">
+              <input type="file">
+            </a>
+          </li>
+          <li class="nav-item p-3 align-self-center">
+            <a class="nav-link  btn btn-warning" id="save" href="#">Save</a>
+          </li>
+          <li class="nav-item p-3 align-self-center">
+            <a class="nav-link  btn btn-warning" href="#">Help</a>
+          </li>
+        </ul>
+    </nav>
+    <hr>
     <title>DayZ XML Editor</title>
   </head>
   <body class="bg-dark text-white">
-    <img src="./media/DayZLogo.png" alt="DayZ Logo"/>
-    <div class=" border border-warning input-group mb-3 w-50 p-3 mx-auto">
-        <input type="file" class="custom-file-input" id="uploadFileButton">
-    </div>
-    <script src="./renderer.js"></script>
+  <p id="myPara"></p>
+    <script src="./renderer.js">
+    </script>
+
+  <script src="./saveFile.js">
+
+  </script>
   </body>
+  <footer class="bg-dark text-center text-warning fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 PackJC Version 0.01
+      <a class="text-white" href="https://github.com/PackJC/DayZLootEditor/">Source</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
