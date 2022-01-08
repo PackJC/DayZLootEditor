@@ -51,6 +51,8 @@
   ipcRenderer.on("reply",(event,data)=>{
     console.log("success")
     console.log(data)
+    var element = document.getElementById("myPara");
+    element.innerHTML = data;
   })
 </script>
 

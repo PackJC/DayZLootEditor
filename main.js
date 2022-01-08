@@ -3,6 +3,7 @@ const electron = require("electron");
 const { app, BrowserWindow ,ipcMain,dialog} = electron;
 const path = require('path')
 const fs = require('fs');
+const {read} = require("fs-extra");
 try {
   require('electron-reloader')(module)
 } catch (_) {}
@@ -58,7 +59,10 @@ app.on('web-contents-created', (e, contents) => {
     require('open')(url);
   });
   contents.on('will-navigate', (e, url) => {
-    if (url !== contents.getURL()) e.preventDefault(), require('open')(url);
+    if (url !== contents.getURL()){
+      e.preventDefault();
+      require('open')(url);
+    }
   });
 });
 
@@ -67,7 +71,7 @@ ipcMain.on("getFile",(event)=>{
     title:"Select XML Files to import",
     buttonLabel:"Import .XML File",
     defaultPath:app.getPath('desktop'),
-    properties:['openFile','multiSelections'],
+    properties:['openFile'],
 
     // See place holder 4 in above image
     filters :[
@@ -77,12 +81,16 @@ ipcMain.on("getFile",(event)=>{
 
   }
   dialog.showOpenDialog(options).then((result)=>{
-    console.warn("res",result)
-    console.log("Result" + result.toString())
-    pages=result.filePaths
-    console.warn("Line 76: " + pages)
+    pages = result.filePaths
+    console.warn(result.filePaths.toString())
+    let filePath = result.filePaths.toString()
     if(false === result.canceled){
-      event.reply("reply",result) //This is how we send the file back
+      const data = fs.readFileSync(filePath,
+          {encoding:'utf8', flag:'r'});
+    console.log(data)
+    //pages needs to be turned into JSON objects, then send it.
+
+      event.reply("reply",data) //This is how we send the file back
     }
     else{
       console.warn("file not selected")
