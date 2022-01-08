@@ -20,8 +20,10 @@
     "chokidar": "^3.5.2",
     "drag-drop": "^7.2.0",
     "electron": "^16.0.5",
+    "electron-reloader": "^1.2.1",
     "file-saver": "^2.0.5",
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "xml2js": "^0.4.23"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",

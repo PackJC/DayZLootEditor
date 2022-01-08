@@ -2,25 +2,22 @@
 <html lang="eng" class="bg-dark">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <link href="./styles.css" rel="stylesheet">
 
     <nav class="navbar navbar-expand navbar-light bg-dark">
         <ul class="navbar-nav p-3 ">
           <li class="nav-item align-self-center p-3">
-            <img src="./media/DayZLogo.png" class="img-fluid " alt="DayZ Logo"/>
+              <img src="./media/DayZLogo.png" class="img-fluid" alt="DayZ Logo"/>
           </li>
           <li class="nav-item p-3 align-self-center active">
-            <a class="nav-link btn btn-warning" href="#">
-              <input type="file">
-            </a>
+                <button class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
           </li>
           <li class="nav-item p-3 align-self-center">
             <a class="nav-link  btn btn-warning" id="save" href="#">Save</a>
           </li>
           <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-warning" href="#">Help</a>
+            <a target="_self" class="nav-link  btn btn-warning" href="https://github.com/PackJC/DayZLootEditor/blob/main/README.md">Help</a>
           </li>
         </ul>
     </nav>
@@ -29,22 +26,14 @@
   </head>
   <body class="bg-dark text-white">
   <p id="myPara"></p>
-    <script src="./renderer.js">
-    </script>
-
-  <script src="./saveFile.js">
-
-  </script>
   </body>
   <footer class="bg-dark text-center text-warning fixed-bottom">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 PackJC Version 0.01
-      <a class="text-white" target="_self" href="https://github.com/PackJC/DayZLootEditor/">Source</a>
+      © 2021 PackJC Version 0.01
+      <a target="_self" href="https://github.com/PackJC/DayZLootEditor/">Source Code</a>
     </div>
-    <!-- Copyright -->
   </footer>
-
 </html>
 
 
@@ -52,8 +41,18 @@
 
 
 
-
-
+<script src="./renderer.js"></script>
+<script>
+  const { app, BrowserWindow ,ipcMain,ipcRenderer} = require("electron");
+  document.getElementById("getFile").addEventListener("click",myFun);
+  function myFun(){
+    ipcRenderer.send("getFile")
+  }
+  ipcRenderer.on("reply",(event,data)=>{
+    console.log("success")
+    console.log(data)
+  })
+</script>
 
 
 
