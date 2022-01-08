@@ -1,9 +1,8 @@
-
 const electron = require("electron");
 const { app, BrowserWindow ,ipcMain,dialog} = electron;
 const path = require('path')
 const fs = require('fs');
-const {read} = require("fs-extra");
+const xml2js = require("xml2js");
 try {
   require('electron-reloader')(module)
 } catch (_) {}
@@ -72,30 +71,29 @@ ipcMain.on("getFile",(event)=>{
     buttonLabel:"Import .XML File",
     defaultPath:app.getPath('desktop'),
     properties:['openFile'],
-
-    // See place holder 4 in above image
     filters :[
-      {name: 'Text', extensions: ['txt', 'text', 'png']},
       {name: 'XML', extensions: ['xml']}
         ],
-
   }
   dialog.showOpenDialog(options).then((result)=>{
     pages = result.filePaths
-    console.warn(result.filePaths.toString())
     let filePath = result.filePaths.toString()
     if(false === result.canceled){
       const data = fs.readFileSync(filePath,
           {encoding:'utf8', flag:'r'});
-    console.log(data)
-    //pages needs to be turned into JSON objects, then send it.
-
-      event.reply("reply",data) //This is how we send the file back
+        // convert XML to JSON
+        xml2js.parseString(data, (err, result) => {
+          if(err) {
+            throw err;
+          }
+          // `result` is a JavaScript object
+          // convert it to a JSON string
+          event.reply("reply",JSON.stringify(result, null, 0))
+        });
     }
     else{
-      console.warn("file not selected")
+      console.warn("File not selected!")
     }
-    console.log('Line 84'  )
   })
 })
 
@@ -105,7 +103,7 @@ ipcMain.on("whereto",(event)=>{
     defaultPath:"Untitled",
   }
   dialog.showSaveDialog(options).then((result)=>{
-    out=result.filePath+".pdf"
+    out=result.filePath+".xml"
     console.warn(out)
     if(false === result.canceled){
       event.reply("imgtopdf","true")
@@ -126,5 +124,3 @@ ipcMain.on("imgtopdf_convert",(event)=>{
   event.reply("imgtopdfconvertfinal","true")
   console.warn("test4")
 })
-
-

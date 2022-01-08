@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <link href="./node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <link href="./styles.css" rel="stylesheet">
-
     <nav class="navbar navbar-expand navbar-light bg-dark">
         <ul class="navbar-nav p-3 ">
-          <li class="nav-item align-self-center p-3">
+          <li class="nav-item align-self-center p-1">
               <img src="./media/DayZLogo.png" class="img-fluid" alt="DayZ Logo"/>
           </li>
           <li class="nav-item p-3 align-self-center active">
-                <button class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
+            <button class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
           </li>
           <li class="nav-item p-3 align-self-center">
             <a class="nav-link  btn btn-warning" id="save" href="#">Save</a>
@@ -30,20 +29,15 @@
   <footer class="bg-dark text-center text-warning fixed-bottom">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2021 PackJC Version 0.01
+      © 2022 PackJC Version 0.5
       <a target="_self" href="https://github.com/PackJC/DayZLootEditor/">Source Code</a>
     </div>
   </footer>
 </html>
 
-
-
-
-
-
 <script src="./renderer.js"></script>
 <script>
-  const { app, BrowserWindow ,ipcMain,ipcRenderer} = require("electron");
+  const {ipcRenderer} = require("electron");
   document.getElementById("getFile").addEventListener("click",myFun);
   function myFun(){
     ipcRenderer.send("getFile")
@@ -51,13 +45,6 @@
   ipcRenderer.on("reply",(event,data)=>{
     console.log("success")
     console.log(data)
-    var element = document.getElementById("myPara");
-    element.innerHTML = data;
+    document.getElementById("myPara").innerHTML = data;
   })
 </script>
-
-
-
-
-
-
