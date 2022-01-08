@@ -13,7 +13,7 @@
             <button class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
           </li>
           <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-warning" id="save" href="#">Save</a>
+            <a class="nav-link  btn btn-warning" id="saveFile" href="#">Save</a>
           </li>
           <li class="nav-item p-3 align-self-center">
             <a target="_self" class="nav-link  btn btn-warning" href="https://github.com/PackJC/DayZLootEditor/blob/main/README.md">Help</a>
@@ -24,27 +24,38 @@
     <title>DayZ XML Editor</title>
   </head>
   <body class="bg-dark text-white">
-  <p id="myPara"></p>
+  <p class="p-3" id="myPara"></p>
   </body>
   <footer class="bg-dark text-center text-warning fixed-bottom">
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2022 PackJC Version 0.5
       <a target="_self" href="https://github.com/PackJC/DayZLootEditor/">Source Code</a>
     </div>
   </footer>
 </html>
 
-<script src="./renderer.js"></script>
+<script src="./renderer.js">
+
+</script>
 <script>
+
   const {ipcRenderer} = require("electron");
-  document.getElementById("getFile").addEventListener("click",myFun);
-  function myFun(){
-    ipcRenderer.send("getFile")
+
+  document.getElementById("getFile").addEventListener("click",getFileFunction);
+  document.getElementById("saveFile").addEventListener("click", saveFileFunction);
+
+  function getFileFunction(){
+    ipcRenderer.send("getFileEvent")
   }
-  ipcRenderer.on("reply",(event,data)=>{
+  function saveFileFunction(){
+    ipcRenderer.send("saveFileEvent")
+  }
+
+  ipcRenderer.on("receiveDataReply",(event,data)=>{
     console.log("success")
     console.log(data)
     document.getElementById("myPara").innerHTML = data;
   })
+
 </script>

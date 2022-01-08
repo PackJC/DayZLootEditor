@@ -7,6 +7,7 @@ try {
   require('electron-reloader')(module)
 } catch (_) {}
 
+let localDataFile;
 
 function createWindow () {
   // Create the browser window.
@@ -65,7 +66,7 @@ app.on('web-contents-created', (e, contents) => {
   });
 });
 
-ipcMain.on("getFile",(event)=>{
+ipcMain.on("getFileEvent",(event)=>{
   options={
     title:"Select XML Files to import",
     buttonLabel:"Import .XML File",
@@ -81,46 +82,40 @@ ipcMain.on("getFile",(event)=>{
     if(false === result.canceled){
       const data = fs.readFileSync(filePath,
           {encoding:'utf8', flag:'r'});
-        // convert XML to JSON
+        // Parse XML to JSON
         xml2js.parseString(data, (err, result) => {
           if(err) {
             throw err;
           }
-          // `result` is a JavaScript object
-          // convert it to a JSON string
-          event.reply("reply",JSON.stringify(result, null, 0))
+          // Convert to JSON and event reply
+          localDataFile = JSON.stringify(result, null, 0)
+          event.reply("receiveDataReply",localDataFile)
         });
+    }
+    else{
+      console.warn("File was not selected!")
+    }
+  })
+})
+
+ipcMain.on("saveFileEvent",(event)=>{
+  options={
+    title:"Select a file",
+    defaultPath:"Untitled",
+    filters :[
+      {name: 'XML', extensions: ['xml']}
+    ],
+  }
+
+  dialog.showSaveDialog(options).then((result)=>{
+    if(false === result.canceled) {
+      console.log("Out: " + localDataFile)
+      fs.writeFile(result.filePath, localDataFile, (err) => {
+      });
     }
     else{
       console.warn("File not selected!")
     }
+    console.warn("Line 113")
   })
-})
-
-ipcMain.on("whereto",(event)=>{
-  options={
-    title:"select the file",
-    defaultPath:"Untitled",
-  }
-  dialog.showSaveDialog(options).then((result)=>{
-    out=result.filePath+".xml"
-    console.warn(out)
-    if(false === result.canceled){
-      event.reply("imgtopdf","true")
-      console.warn("test2")
-    }
-    else{
-      console.warn("file not selected")
-    }
-    console.warn("test3")
-  })
-})
-
-ipcMain.on("imgtopdf_convert",(event)=>{
-  console.warn("started converting imgtopdf")
-  console.warn(pages)
-  console.warn(out)
-  imgToPDF(pages, 'A4').pipe(fs.createWriteStream(out));
-  event.reply("imgtopdfconvertfinal","true")
-  console.warn("test4")
 })
