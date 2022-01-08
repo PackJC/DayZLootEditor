@@ -27,9 +27,8 @@
   <p class="p-3" id="myPara"></p>
   </body>
   <footer class="bg-dark text-center text-warning fixed-bottom">
-    <!-- Copyright -->
     <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 PackJC Version 0.5
+      © 2022 PackJC Version 0.51
       <a target="_self" href="https://github.com/PackJC/DayZLootEditor/">Source Code</a>
     </div>
   </footer>
@@ -53,7 +52,7 @@
   }
 
   ipcRenderer.on("receiveDataReply",(event,data)=>{
-    console.log("success")
+    console.log("successful file upload")
     console.log(data)
     document.getElementById("myPara").innerHTML = data;
   })

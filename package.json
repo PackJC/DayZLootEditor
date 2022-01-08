@@ -18,7 +18,6 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "chokidar": "^3.5.2",
-    "drag-drop": "^7.2.0",
     "electron": "^16.0.5",
     "electron-reloader": "^1.2.1",
     "file-saver": "^2.0.5",

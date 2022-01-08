@@ -2,7 +2,7 @@ const electron = require("electron");
 const { app, BrowserWindow ,ipcMain,dialog} = electron;
 const path = require('path')
 const fs = require('fs');
-const xml2js = require("xml2js");
+const xml2js = require('xml2js');
 try {
   require('electron-reloader')(module)
 } catch (_) {}
@@ -100,22 +100,26 @@ ipcMain.on("getFileEvent",(event)=>{
 
 ipcMain.on("saveFileEvent",(event)=>{
   options={
-    title:"Select a file",
-    defaultPath:"Untitled",
+    title:"Select XML Files to export",
+    buttonLabel:"Save",
+    defaultPath:app.getPath('desktop'),
     filters :[
       {name: 'XML', extensions: ['xml']}
     ],
   }
-
   dialog.showSaveDialog(options).then((result)=>{
     if(false === result.canceled) {
-      console.log("Out: " + localDataFile)
-      fs.writeFile(result.filePath, localDataFile, (err) => {
+      //console.log("Out: " + localDataFile)
+      var builder = new xml2js.Builder();
+      var xml = builder.buildObject(localDataFile);
+      console.log("xml: " + xml)
+      //Problem is here, the JSON -> XML doesn't build all of the nodes out
+      //It just turns the file to XML and gives it XML header.
+      fs.writeFile(result.filePath, xml, (err) => {
       });
     }
     else{
-      console.warn("File not selected!")
+      console.warn("File was not selected!")
     }
-    console.warn("Line 113")
   })
 })
