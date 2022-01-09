@@ -3,6 +3,7 @@ const { app, BrowserWindow ,ipcMain,dialog} = electron;
 const path = require('path')
 const fs = require('fs');
 const xml2js = require('xml2js');
+
 try {
   require('electron-reloader')(module)
 } catch (_) {}
@@ -89,7 +90,7 @@ ipcMain.on("getFileEvent",(event)=>{
           }
           // Convert to JSON and event reply
           localDataFile = JSON.stringify(result, null, 0)
-          event.reply("receiveDataReply",localDataFile)
+          event.reply("receiveDataReply",data)
         });
     }
     else{
@@ -109,12 +110,13 @@ ipcMain.on("saveFileEvent",(event)=>{
   }
   dialog.showSaveDialog(options).then((result)=>{
     if(false === result.canceled) {
-      //console.log("Out: " + localDataFile)
-      var builder = new xml2js.Builder();
-      var xml = builder.buildObject(localDataFile);
-      console.log("xml: " + xml)
+      console.log("Out: " + localDataFile)
       //Problem is here, the JSON -> XML doesn't build all of the nodes out
       //It just turns the file to XML and gives it XML header.
+
+      var builder = new xml2js.Builder();
+      var xml = builder.buildObject(localDataFile).ele("Types");
+
       fs.writeFile(result.filePath, xml, (err) => {
       });
     }
