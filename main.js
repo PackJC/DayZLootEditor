@@ -115,9 +115,9 @@ ipcMain.on("saveFileEvent",(event)=>{
       //It just turns the file to XML and gives it XML header.
 
       var builder = new xml2js.Builder();
-      var xml = builder.buildObject(localDataFile).ele("Types");
-
-      fs.writeFile(result.filePath, xml, (err) => {
+      var xml = builder.buildObject(localDataFile);
+      //Bypass XML to JSON conversion and just keep it XML
+      fs.writeFile(result.filePath, localDataFile, (err) => {
       });
     }
     else{
