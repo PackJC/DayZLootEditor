@@ -88,10 +88,14 @@ ipcMain.on("getFileEvent",(event)=>{
           if(err) {
             throw err;
           }
-          // Convert to JSON and event reply
+          // Convert to JSON String and event reply
           localDataFile = JSON.stringify(result, null, 0)
-          event.reply("receiveDataReply",data)
         });
+      //localDataFile sends JSON string
+      //(JSON.parse(localDataFile)) sends JSON Object
+      //data sends raw XML
+      event.reply("receiveDataReply",data)
+
     }
     else{
       console.warn("File was not selected!")
@@ -115,9 +119,9 @@ ipcMain.on("saveFileEvent",(event)=>{
       //It just turns the file to XML and gives it XML header.
 
       var builder = new xml2js.Builder();
-      var xml = builder.buildObject(localDataFile);
+      var xml = builder.buildObject((JSON.parse(localDataFile)));
       //Bypass XML to JSON conversion and just keep it XML
-      fs.writeFile(result.filePath, localDataFile, (err) => {
+      fs.writeFile(result.filePath, xml, (err) => {
       });
     }
     else{
