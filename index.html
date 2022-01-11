@@ -4,37 +4,26 @@
     <meta charset="UTF-8">
     <link href="./node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <link href="./styles.css" rel="stylesheet">
-
-    <nav class="navbar navbar-expand navbar-light bg-dark">
-        <ul class="navbar-nav p-0">
-          <li class="nav-item align-self-center p-1">
-              <img src="./media/DayZLogo.png" class="img-fluid" alt="DayZ Logo"/>
-          </li>
-          <li class="nav-item p-3 align-self-center active">
-            <button class="nav-link btn btn-warning"  onclick="activateSaveButton()" id="getFile">Import XML Files</button>
-          </li>
-          <li class="nav-item p-3 align-self-center">
-            <a class="nav-link btn btn-warning disabled save-btn" id="saveFile">Save</a>
-          </li>
-          <li class="nav-item p-3 align-self-center">
-            <a target="_self" class="nav-link  btn btn-warning" href="https://github.com/PackJC/DayZLootEditor/blob/main/README.md">Help</a>
-          </li>
-        </ul>
-    </nav>
-    <hr>
-    <title>DayZ XML Editor</title>
+    <title>DayZ XES</title>
   </head>
   <body class="bg-dark text-white">
-
-
-
-
-
+  <nav class="navbar navbar-expand navbar-light bg-dark border-bottom">
+    <ul class="navbar-nav p-0">
+      <li class="nav-item align-self-center p-1">
+        <img src="./media/DayZLogo.png" class="img-fluid" alt="DayZ Logo"/>
+      </li>
+      <li class="nav-item p-3 align-self-center active">
+        <button class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
+      </li>
+      <li class="nav-item p-3 align-self-center">
+        <a class="nav-link btn btn-warning disabled save-btn" id="saveFile">Save</a>
+      </li>
+      <li class="nav-item p-3 align-self-center">
+        <a target="_self" class="nav-link  btn btn-warning" href="https://github.com/PackJC/DayZLootEditor/blob/main/README.md">Help</a>
+      </li>
+    </ul>
+  </nav>
   <div class="p-3" id="myPara"></div>
-
-
-
-
   </body>
   <footer class="bg-dark text-center text-warning fixed-bottom">
     <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -51,6 +40,14 @@
 
   const {ipcRenderer} = require("electron");
 
+  ipcRenderer.on("receiveDataReply",(event,data)=>{
+    console.log("successful file upload")
+    console.log(data)
+    document.querySelector('.save-btn').classList.remove('disabled')
+    document.getElementById("myPara").innerHTML = data;
+
+  })
+
   document.getElementById("getFile").addEventListener("click",getFileFunction);
   document.getElementById("saveFile").addEventListener("click", saveFileFunction);
 
@@ -60,19 +57,6 @@
   }
   function saveFileFunction(){
     ipcRenderer.send("saveFileEvent")
-  }
-
-  ipcRenderer.on("receiveDataReply",(event,data)=>{
-    console.log("successful file upload")
-    console.log(data)
-
-    document.getElementById("myPara").innerHTML = data;
-
-  })
-
-  function activateSaveButton() {
-    const saveButton = document.querySelector('.save-btn');
-    saveButton.classList.remove('disabled');
   }
 
 </script>
