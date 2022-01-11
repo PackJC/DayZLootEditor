@@ -25,7 +25,6 @@
     <title>DayZ XML Editor</title>
   </head>
   <body class="bg-dark text-white">
-  <p class="p-3" id="myPara"></p>
 
 
 
@@ -34,7 +33,7 @@
 
 
 
-
+  <div class="p-3" id="myPara"></div>
 
 
 
@@ -68,7 +67,9 @@
   ipcRenderer.on("receiveDataReply",(event,data)=>{
     console.log("successful file upload")
     console.log(data)
+
     document.getElementById("myPara").innerHTML = data;
+
   })
 
 </script>

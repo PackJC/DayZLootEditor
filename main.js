@@ -3,6 +3,7 @@ const { app, BrowserWindow ,ipcMain,dialog} = electron;
 const path = require('path')
 const fs = require('fs');
 const xml2js = require('xml2js');
+const json2html = require('node-json2html');
 
 try {
   require('electron-reloader')(module)
@@ -88,13 +89,15 @@ ipcMain.on("getFileEvent",(event)=>{
           if(err) {
             throw err;
           }
+          console.log(JSON.stringify(result))
           // Convert to JSON String and event reply
-          localDataFile = JSON.stringify(result, null, 0)
+          //localDataFile = JSON.stringify(result, null, 0)
+          localDataFile = JSON.stringify(result)
         });
       //localDataFile sends JSON string
-      //(JSON.parse(localDataFile)) sends JSON Object
-      //data sends raw XML
-      event.reply("receiveDataReply",data)
+      //sends JSON Object
+      //data sends raw XML9
+      event.reply("receiveDataReply",localDataFile)
 
     }
     else{
@@ -115,12 +118,8 @@ ipcMain.on("saveFileEvent",(event)=>{
   dialog.showSaveDialog(options).then((result)=>{
     if(false === result.canceled) {
       console.log("Out: " + localDataFile)
-      //Problem is here, the JSON -> XML doesn't build all of the nodes out
-      //It just turns the file to XML and gives it XML header.
-
       var builder = new xml2js.Builder();
       var xml = builder.buildObject((JSON.parse(localDataFile)));
-      //Bypass XML to JSON conversion and just keep it XML
       fs.writeFile(result.filePath, xml, (err) => {
       });
     }
