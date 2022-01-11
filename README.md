@@ -35,7 +35,10 @@ You must have Nodejs, npm, github, and relevant packages downloaded for the proj
 
 <br>
 
-Now the project should open up on your desktop. A free program called Fiddle which can be found https://www.electronjs.org/fiddle
+Now the project should open up on your desktop.
+## Recommended Software
+
+ A free program called Fiddle which can be found https://www.electronjs.org/fiddle
 Fiddle makes it easy to edit projects built with Electronjs. This project was developed using Fiddle and WebStorm. 
 ## License
 <hr>
