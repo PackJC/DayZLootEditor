@@ -48,9 +48,10 @@
     console.log("successful file upload")
     //console.log(data.catalog.book)
     //gets name of each entry
+    let arrayTypes
     data.catalog.book.forEach(element =>
-            console.log(element.$.id.toString() + element.author + element.title
-            +element.genre+element.price+element.publish_date+element.description)
+            arrayTypes += element.$.id.toString() + element.author + element.title
+            +element.genre+element.price+element.publish_date+element.description
 
 
     );
@@ -58,7 +59,8 @@
     //I need to build HTML entry here possible Table Rows
     //data.catalog.book.forEach(element => console.log(element.$.id.toString()));
     document.querySelector('.save-btn').classList.remove('disabled')
-    document.getElementById("myPara").innerHTML = JSON.stringify(data);
+    document.getElementById("myPara").innerHTML = arrayTypes;
+//    document.getElementById("myPara").innerHTML = JSON.stringify(data);
 
 
   })
