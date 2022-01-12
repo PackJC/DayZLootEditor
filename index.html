@@ -4,31 +4,35 @@
     <meta charset="UTF-8">
     <link href="./node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
     <link href="./styles.css" rel="stylesheet">
-    <title>DayZ XES</title>
+    <title>XML Editor : DayZ Standalone</title>
   </head>
   <body class="bg-dark text-white">
-  <nav class="navbar navbar-expand navbar-light bg-dark border-bottom">
+  <nav class="navbar navbar-expand navbar-light border-warning border-bottom" style="background-color: rgba(0, 0, 0, 0.2);">
     <ul class="navbar-nav p-0">
       <li class="nav-item align-self-center p-1">
         <img src="./media/DayZLogo.png" class="img-fluid" alt="DayZ Logo"/>
       </li>
       <li class="nav-item p-3 align-self-center active">
-        <button class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
+        <button  class="nav-link btn btn-warning" id="getFile">Import XML Files</button>
       </li>
       <li class="nav-item p-3 align-self-center">
         <a class="nav-link btn btn-warning disabled save-btn" id="saveFile">Save</a>
       </li>
       <li class="nav-item p-3 align-self-center">
-        <a target="_self" class="nav-link  btn btn-warning" href="https://github.com/PackJC/DayZLootEditor/blob/main/README.md">Help</a>
+        <a class="nav-link  btn btn-warning" id="help">Help</a>
       </li>
     </ul>
   </nav>
-  <div class="p-3" id="myPara"></div>
+
+  <p class="bg-gradient text-black m-3 p-3 h6" id="myPara"></p>
+  <div>
+    <table id="apps"></table>
+  </div>
+
   </body>
-  <footer class="bg-dark text-center text-warning fixed-bottom">
-    <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 PackJC Version 0.512
-      <a target="_self" href="https://github.com/PackJC/DayZLootEditor/">Source Code</a>
+  <footer class="bg-dark text-center text-warning fixed-bottom border-warning border-top">
+    <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 PackJC Version 0.5123
     </div>
   </footer>
 </html>
@@ -42,9 +46,20 @@
 
   ipcRenderer.on("receiveDataReply",(event,data)=>{
     console.log("successful file upload")
-    console.log(data)
+    //console.log(data.catalog.book)
+    //gets name of each entry
+    data.catalog.book.forEach(element =>
+            console.log(element.$.id.toString() + element.author + element.title
+            +element.genre+element.price+element.publish_date+element.description)
+
+
+    );
+
+    //I need to build HTML entry here possible Table Rows
+    //data.catalog.book.forEach(element => console.log(element.$.id.toString()));
     document.querySelector('.save-btn').classList.remove('disabled')
-    document.getElementById("myPara").innerHTML = data;
+    document.getElementById("myPara").innerHTML = JSON.stringify(data);
+
 
   })
 
@@ -58,5 +73,11 @@
   function saveFileFunction(){
     ipcRenderer.send("saveFileEvent")
   }
+  document.getElementById("help").addEventListener("click",getHelp);
+  function getHelp(){
+    window.location.href = "help.html";
+  }
+
+
 
 </script>

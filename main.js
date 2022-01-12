@@ -1,9 +1,8 @@
 const electron = require("electron");
-const { app, BrowserWindow ,ipcMain,dialog} = electron;
+const { app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require('path')
 const fs = require('fs');
 const xml2js = require('xml2js');
-const json2html = require('node-json2html');
 
 try {
   require('electron-reloader')(module)
@@ -40,19 +39,6 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-// Use local web browser to open links
-app.on('web-contents-created', (e, contents) => {
-  contents.on('new-window', (e, url) => {
-    e.preventDefault();
-    require('open')(url);
-  });
-  contents.on('will-navigate', (e, url) => {
-    if (url !== contents.getURL()){
-      e.preventDefault();
-      require('open')(url);
-    }
-  });
-});
 
 ipcMain.on("getFileEvent",(event)=>{
   options={
@@ -70,19 +56,13 @@ ipcMain.on("getFileEvent",(event)=>{
     if(false === result.canceled){
       const data = fs.readFileSync(filePath,
           {encoding:'utf8', flag:'r'});
-        // Parse XML to JSON
+        //Parse XML to JSON
         xml2js.parseString(data, (err, result) => {
           if(err) {
             throw err;
           }
-          console.log(JSON.stringify(result))
-          // Convert to JSON String and event reply
-          //localDataFile = JSON.stringify(result, null, 0)
-          localDataFile = JSON.stringify(result)
+          localDataFile = result
         });
-      //localDataFile sends JSON string
-      //sends JSON Object
-      //data sends raw XML9
       event.reply("receiveDataReply",localDataFile)
 
     }
@@ -103,7 +83,7 @@ ipcMain.on("saveFileEvent",(event)=>{
   }
   dialog.showSaveDialog(options).then((result)=>{
     if(false === result.canceled) {
-      console.log("Out: " + localDataFile)
+      localDataFile = JSON.stringify(localDataFile)
       const builder = new xml2js.Builder();
       const xml = builder.buildObject((JSON.parse(localDataFile)));
       fs.writeFile(result.filePath, xml, (err) => {
