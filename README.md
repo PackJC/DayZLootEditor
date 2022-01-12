@@ -12,7 +12,6 @@
 
 
 ## Usage
-<hr>
 The loot table of DayZ (Standalone) is stored in a XML file inside 
 this folder: 
 <br>`DayZServer\mpmissions\dayzOffline.chernarusplus\db\types.xml`
@@ -20,7 +19,6 @@ this folder:
 To start, open the file `types.xml`. This file is your servers loot table. On the first time the file gets saved, a backup file containing the original content with the name `types.xml.original.xml` will be created.
 
 ## Installing Project
-<hr>
 
 You must have Nodejs, npm, github, and relevant packages downloaded for the project to work.
 <br>
@@ -36,11 +34,21 @@ You must have Nodejs, npm, github, and relevant packages downloaded for the proj
 <br>
 
 Now the project should open up on your desktop.
+## Screenshots
+![windowexample](https://user-images.githubusercontent.com/34726562/149073783-81a02a3e-b84f-4e94-8627-6151c0cd3a05.PNG)
+
+
+
 ## Recommended Software
 
- A free program called Fiddle which can be found https://www.electronjs.org/fiddle
+ A free program called Fiddle which can be found https://www.electronjs.org/
 Fiddle makes it easy to edit projects built with Electronjs. This project was developed using Fiddle and WebStorm. 
-## License
-<hr>
-MIT License
----
+
+## MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
