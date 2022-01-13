@@ -56,7 +56,6 @@ ipcMain.on("getFileEvent",(event)=>{
     if(false === result.canceled){
       const data = fs.readFileSync(filePath,
           {encoding:'utf8', flag:'r'});
-        //Parse XML to JSON
         xml2js.parseString(data, (err, result) => {
           if(err) {
             throw err;
@@ -64,7 +63,6 @@ ipcMain.on("getFileEvent",(event)=>{
           localDataFile = result
         });
       event.reply("receiveDataReply",localDataFile)
-
     }
     else{
       console.warn("File was not selected!")

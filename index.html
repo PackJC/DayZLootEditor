@@ -23,16 +23,26 @@
       </li>
     </ul>
   </nav>
-
-  <p class="bg-gradient text-black m-3 p-3 h6" id="myPara"></p>
-  <div>
-    <table id="apps"></table>
-  </div>
-
+  <table class="bg-warning text-black m-3 p-3 h6" id="myTable">
+    <tr>
+      <th>Name</th>
+      <th>Nominal</th>
+      <th>Lifetime</th>
+      <th>Restock</th>
+      <th>Min</th>
+      <th>QuantMin</th>
+      <th>QuantMax</th>
+      <th>Cost</th>
+      <th>Flags</th>
+      <th>Category</th>
+      <th>Usage</th>
+      <th>Value</th>
+    </tr>
+  </table>
   </body>
   <footer class="bg-dark text-center text-warning fixed-bottom border-warning border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 PackJC Version 0.5123
+      © 2022 PackJC Version 0.60
     </div>
   </footer>
 </html>
@@ -41,28 +51,27 @@
 
 </script>
 <script>
-
   const {ipcRenderer} = require("electron");
-
   ipcRenderer.on("receiveDataReply",(event,data)=>{
-    console.log("successful file upload")
-    //console.log(data.catalog.book)
-    //gets name of each entry
-    let arrayTypes
-    data.catalog.book.forEach(element =>
-            arrayTypes += element.$.id.toString() + element.author + element.title
-            +element.genre+element.price+element.publish_date+element.description
-
-
+    //console.log("successful file upload")
+    data.types.type.forEach(element =>
+            document.getElementById( 'myTable' ).innerHTML +=
+                    '<tr id = "row">' +
+                      '<td>' + element.$.name.toString() + '</td>' +
+                      '<td contenteditable>' + element.nominal + '</td>' +
+                      '<td contenteditable>' + element.lifetime + '</td>' +
+                      '<td contenteditable>' + element.restock + '</td>' +
+                      '<td contenteditable>' + element.min + '</td>' +
+                      '<td contenteditable>' + element.quantmin + '</td>' +
+                      '<td contenteditable>' + element.quantmax + '</td>' +
+                      '<td contenteditable>' + element.cost + '</td>' +
+                      '<td contenteditable>' + element.flags+ '</td>' +
+                      '<td contenteditable>' + element.category + '</td>' +
+                      '<td contenteditable>' + element.usage + '</td>' +
+                      '<td contenteditable>' + element.value + '</td>' +
+                    '</tr>'
     );
-
-    //I need to build HTML entry here possible Table Rows
-    //data.catalog.book.forEach(element => console.log(element.$.id.toString()));
     document.querySelector('.save-btn').classList.remove('disabled')
-    document.getElementById("myPara").innerHTML = arrayTypes;
-//    document.getElementById("myPara").innerHTML = JSON.stringify(data);
-
-
   })
 
   document.getElementById("getFile").addEventListener("click",getFileFunction);
@@ -70,7 +79,6 @@
 
   function getFileFunction(){
     ipcRenderer.send("getFileEvent")
-
   }
   function saveFileFunction(){
     ipcRenderer.send("saveFileEvent")
@@ -79,7 +87,4 @@
   function getHelp(){
     window.location.href = "help.html";
   }
-
-
-
 </script>
