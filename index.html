@@ -21,29 +21,33 @@
       <li class="nav-item p-3 align-self-center">
         <a class="nav-link  btn btn-warning" id="help">Help</a>
       </li>
+
     </ul>
   </nav>
+  <br>
+  <input class="form-control" id="myInput" type="text" placeholder="Search the table">
+  <br>
 
   <table class="table table-striped table-responsive" id="myTable">
     <thead>
     <tr class="justify-content-center">
-      <th title="">Name</th>
-      <th title="Amount of the item allowed on the entire map">Nominal</th>
-      <th title="Lifetime of an item once it is spawned in seconds">Lifetime</th>
-      <th title="Amount of time that will need to pass before an item is allowed to spawn again">Restock</th>
-      <th title="Amount of an item that will spawn on the map">Min</th>
-      <th title="Minimum quantity of consumable within the item">QuantMin</th>
-      <th title="Maximum quantity of consumable within the item">QuantMax</th>
-      <th title="Determines the spawn chance of an item">Cost</th>
-      <th title="Count for this weapon will include inventory of vehicles towards Max">Count in Cargo</th>
-      <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">Count in Hoarder</th>
-      <th title="Count for this weapon will include items in/on map towards Max.">Count in Map</th>
-      <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">Count in Player</th>
-      <th title="Used only to mark player craftable items">Crafted</th>
-      <th title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">Deloot</th>
-      <th title="How and where the item spawns">Category</th>
-      <th title="Group in which area an item will spawn">Usage</th>
-      <th title="How and where the item spawns">Value</th>
+      <th onclick="sortTable(0)" title="">Name </th>
+      <th  onclick="sortTable(1)" title="Amount of the item allowed on the entire map">Nominal</th>
+      <th  onclick="sortTable(2)" title="Lifetime of an item once it is spawned in seconds">Lifetime</th>
+      <th  onclick="sortTable(3)" title="Amount of time that will need to pass before an item is allowed to spawn again">Restock</th>
+      <th  onclick="sortTable(4)" title="Amount of an item that will spawn on the map">Min</th>
+      <th  onclick="sortTable(5)" title="Minimum quantity of consumable within the item">QuantMin</th>
+      <th  onclick="sortTable(6)" title="Maximum quantity of consumable within the item">QuantMax</th>
+      <th  onclick="sortTable(7)" title="Determines the spawn chance of an item">Cost</th>
+      <th onclick="sortTable(8)" title="Count for this weapon will include inventory of vehicles towards Max">Count in Cargo</th>
+      <th onclick="sortTable(9)" title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">Count in Hoarder</th>
+      <th onclick="sortTable(10)" title="Count for this weapon will include items in/on map towards Max.">Count in Map</th>
+      <th onclick="sortTable(11)" title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">Count in Player</th>
+      <th onclick="sortTable(12)" title="Used only to mark player craftable items">Crafted</th>
+      <th onclick="sortTable(13)" title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">Deloot</th>
+      <th onclick="sortTable(14)" title="How and where the item spawns">Category</th>
+      <th onclick="sortTable(15)" title="Group in which area an item will spawn">Usage</th>
+      <th onclick="sortTable(16)" title="How and where the item spawns">Value</th>
     </tr>
     </thead>
     <tbody id="myTBody">
@@ -54,7 +58,7 @@
   </body>
   <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 PackJC Version 0.61
+      © 2022 PackJC Version 0.612
     </div>
   </footer>
 </html>
@@ -65,31 +69,31 @@
 <script>
   const {ipcRenderer} = require("electron");
   ipcRenderer.on("receiveDataReply",(event,data)=>{
-    //console.log("successful file upload")
-    //document.getElementById('importButton').innerHTML = data                       '<td contenteditable>' + element.category[0]?.$.name  + '</td>' +
+    console.log("successful file upload")
     data.types.type.forEach(element =>
-    document.getElementById( 'myTBody' ).innerHTML +=
-                    '<tr id = "row">' +
-                      '<td>' + element.$.name.toString() + '</td>' +
-                      '<td contenteditable>' + element.nominal + '</td>' +
-                      '<td contenteditable>' + element.lifetime + '</td>' +
-                      '<td contenteditable>' + element.restock + '</td>' +
-                      '<td contenteditable>' + element.min + '</td>' +
-                      '<td contenteditable>' + element.quantmin + '</td>' +
-                      '<td contenteditable>' + element.quantmax + '</td>' +
-                      '<td contenteditable>' + element.cost + '</td>' +
-                      '<td contenteditable>' + element.flags[0].$.count_in_cargo + '</td>' +
-                      '<td contenteditable>' + element.flags[0].$.count_in_hoarder + '</td>' +
-                      '<td contenteditable>' + element.flags[0].$.count_in_map + '</td>' +
-                      '<td contenteditable>' + element.flags[0].$.count_in_player + '</td>' +
-                      '<td contenteditable>' + element.flags[0].$.crafted + '</td>' +
-                      '<td contenteditable>' + element.flags[0].$.deloot + '</td>' +
-                      '<td contenteditable>' + element.category?.[0].$.name  + '</td>' +
-                      //'<td contenteditable>' + element.usage?.[0].$.name  + element.usage?.[1].$.name  + element.usage?.[2].$.name  +'</td>' +
-                     // '<td contenteditable>' + element.value?.[0].$.name  + element.value?.[1].$.name  + element.value?.[2].$.name  +'</td>' +
-                    '</tr>'
 
-  );
+               document.getElementById( 'myTBody' ).innerHTML +=
+                               '<tr id = "row">' +
+                                 '<td>' + element.$.name.toString() + '</td>' +
+                                 '<td contenteditable>' + element.nominal + '</td>' +
+                                 '<td contenteditable>' + element.lifetime + '</td>' +
+                                 '<td contenteditable>' + element.restock + '</td>' +
+                                 '<td contenteditable>' + element.min + '</td>' +
+                                 '<td contenteditable>' + element.quantmin + '</td>' +
+                                 '<td contenteditable>' + element.quantmax + '</td>' +
+                                 '<td contenteditable>' + element.cost + '</td>' +
+                                 '<td contenteditable>' + element.flags[0].$.count_in_cargo + '</td>' +
+                                 '<td contenteditable>' + element.flags[0].$.count_in_hoarder + '</td>' +
+                                 '<td contenteditable>' + element.flags[0].$.count_in_map + '</td>' +
+                                 '<td contenteditable>' + element.flags[0].$.count_in_player + '</td>' +
+                                 '<td contenteditable>' + element.flags[0].$.crafted + '</td>' +
+                                 '<td contenteditable>' + element.flags[0].$.deloot + '</td>' +
+                                 '<td contenteditable>' + element.category?.[0]?.$?.name  + '</td>' +
+                                 '<td contenteditable>' + element?.usage?.[0]?.$?.name + ' , ' +  element?.usage?.[1]?.$?.name + ' , '  + element?.usage?.[2]?.$.name  +'</td>' +
+                                '<td contenteditable>' + element.value?.[0]?.$?.name + ' , ' + element?.value?.[1]?.$?.name + ' , ' + element?.value?.[2]?.$?.name  +'</td>' +
+                               '</tr>'
+
+    );
     document.querySelector('.save-btn').classList.remove('disabled')
   })
 
@@ -110,4 +114,73 @@
   function getHelp(){
     window.location.href = "help.html";
   }
+  function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("myTable");
+    switching = true;
+    // Set the sorting direction to ascending:
+    dir = "asc";
+    /* Make a loop that will continue until
+    no switching has been done: */
+    while (switching) {
+      // Start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+      /* Loop through all table rows (except the
+      first, which contains table headers): */
+      for (i = 1; i < (rows.length - 1); i++) {
+        // Start by saying there should be no switching:
+        shouldSwitch = false;
+        /* Get the two elements you want to compare,
+        one from current row and one from the next: */
+        x = rows[i].getElementsByTagName("TD")[n];
+        y = rows[i + 1].getElementsByTagName("TD")[n];
+        /* Check if the two rows should switch place,
+        based on the direction, asc or desc: */
+        if (dir == "asc") {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            // If so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir == "desc") {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            // If so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        /* If a switch has been marked, make the switch
+        and mark that a switch has been done: */
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        // Each time a switch is done, increase this count by 1:
+        switchcount ++;
+      } else {
+        /* If no switching has been done AND the direction is "asc",
+        set the direction to "desc" and run the while loop again. */
+        if (switchcount == 0 && dir == "asc") {
+          dir = "desc";
+          switching = true;
+        }
+      }
+    }
+  }
+
+
 </script>
+<script>window.$ = window.jQuery = require('jquery');</script>
+
+<script>
+  $(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+
