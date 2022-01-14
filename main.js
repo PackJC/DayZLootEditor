@@ -63,6 +63,7 @@ ipcMain.on("getFileEvent",(event)=>{
           localDataFile = result
         });
       event.reply("receiveDataReply",localDataFile)
+      event.reply("updateImportButton", pages)
     }
     else{
       console.warn("File was not selected!")
