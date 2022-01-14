@@ -35,8 +35,8 @@ You must have Nodejs, npm, github, and relevant packages downloaded for the proj
 
 Now the project should open up on your desktop.
 ## Screenshots
-![windowexample](https://user-images.githubusercontent.com/34726562/149073783-81a02a3e-b84f-4e94-8627-6151c0cd3a05.PNG)
 
+![Version 0 60](https://user-images.githubusercontent.com/34726562/149244803-437e7ffe-dcfa-4dd4-9739-f2001473e945.PNG)
 
 
 ## Recommended Software
