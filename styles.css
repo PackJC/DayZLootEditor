@@ -3,3 +3,6 @@
     text-align:center;
 }
 
+th {
+    user-select: none;
+}

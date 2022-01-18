@@ -22,6 +22,7 @@
     "electron-reloader": "^1.2.1",
     "file-saver": "^2.0.5",
     "fs-extra": "^10.0.0",
+    "html-table-to-json": "^1.0.0",
     "xml2js": "^0.4.23",
     "xmlbuilder2": "^3.0.2"
   },
@@ -31,6 +32,7 @@
     "jquery": "^3.6.0",
     "node-json2html": "^2.2.0",
     "open": "^8.4.0",
-    "popper": "^1.0.1"
+    "popper": "^1.0.1",
+    "table-to-json": "^1.0.0"
   }
 }
