@@ -35,8 +35,8 @@ You must have Nodejs, npm, github, and relevant packages downloaded for the proj
 
 Now the project should open up on your desktop.
 ## Screenshots
+![Version 0 612](https://user-images.githubusercontent.com/34726562/149465980-e42794f9-bea0-4ca7-bbc1-0fb9458dc8ba.PNG)
 
-![Version 0 60](https://user-images.githubusercontent.com/34726562/149244803-437e7ffe-dcfa-4dd4-9739-f2001473e945.PNG)
 
 
 ## Recommended Software
@@ -44,11 +44,6 @@ Now the project should open up on your desktop.
  A free program called Fiddle which can be found https://www.electronjs.org/
 Fiddle makes it easy to edit projects built with Electronjs. This project was developed using Fiddle and WebStorm. 
 
-## MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## License
+  GNU GENERAL PUBLIC LICENSE
 
