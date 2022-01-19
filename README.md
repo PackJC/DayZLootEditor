@@ -7,7 +7,11 @@
  Created with Electron powered by Nodejs
 </p>
 
-
+##Reason
+It's hard editing loot tables for DayZ. Did you know there are over 20,000 items to adjust values for in the game?
+This tool makes it very easy for users to simply search by name for the item they're looking for. Sort items numerically, or alphabetically - both ways you can do with this simple tool.
+Once finished editing, simple hit the 'save' button. BAM! You're finished with your servers loot tables - NO MORE CTRL + F each and every time you need to find something, looking through messy lines of XML. 
+Hope you enjoy using! :) 
 
 
 
@@ -20,7 +24,8 @@ To start, open the file `types.xml`. This file is your servers loot table. On th
 
 ## Installing Project
 
-You must have Nodejs, npm, github, and relevant packages downloaded for the project to work.
+You must have Nodejs, npm, github, and relevant packages downloaded for the project to work. If you are running the
+source code, you must install the developer dependencies. If you are running the executable, then you can simply launcher the application with no further need to installation instruction. Otherwise, follow the directions below.
 <br>
 1. Move into the directory of the files
 `cd dayzlooteditor`
@@ -31,9 +36,15 @@ You must have Nodejs, npm, github, and relevant packages downloaded for the proj
 3. Start the project
 `npm start`
 
-<br>
+Electrum window should pop up, this window is the application.
+##Developer Dependencies
+1) xml2js
+2) table-to-json (jQuery Plugin)
+3) jQuery
+4) bootstrap
+5) fs
 
-Now the project should open up on your desktop.
+
 ## Screenshots
 ![Version 0 612](https://user-images.githubusercontent.com/34726562/149465980-e42794f9-bea0-4ca7-bbc1-0fb9458dc8ba.PNG)
 
