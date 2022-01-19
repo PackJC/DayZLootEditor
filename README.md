@@ -7,7 +7,7 @@
  Created with Electron powered by Nodejs
 </p>
 
-##Reason
+## Reason
 It's hard editing loot tables for DayZ. Did you know there are over 20,000 items to adjust values for in the game?
 This tool makes it very easy for users to simply search by name for the item they're looking for. Sort items numerically, or alphabetically - both ways you can do with this simple tool.
 Once finished editing, simple hit the 'save' button. BAM! You're finished with your servers loot tables - NO MORE CTRL + F each and every time you need to find something, looking through messy lines of XML. 
