@@ -37,7 +37,8 @@ source code, you must install the developer dependencies. If you are running the
 `npm start`
 
 Electrum window should pop up, this window is the application.
-##Developer Dependencies
+
+## Developer Dependencies
 1) xml2js
 2) table-to-json (jQuery Plugin)
 3) jQuery
