@@ -156,13 +156,26 @@
         ipcRenderer.send("saveFileEvent")
     }
     function getTest() {
+        var parser = new DOMParser();
         table = $('#myTable').tableToJSON()
         var typeArr =  {"type" : table}
         var typesArray = {"types" : typeArr}
         const builder = new xml2js.Builder();
+
+
+        
         const xml = builder.buildObject(typesArray);
-        //xml.types.forEach(x => console.log(x))
-        console.log(xml.types.type[0])
+        var xmlDoc = parser.parseFromString(xml, "application/xml");
+        console.log(xmlDoc)
+
+       // console.log(xmlDoc.)
+        var x = xmlDoc.getElementsByTagName("types")
+        for (i = 0; i < x.length ;i++) {
+            console.log(x[i])
+            //add attribute here
+        }
+
+
 
         //Might need to edit XML before it goes to a file
         //Set each row to an array, grab the [0] value, increasing to array.count
