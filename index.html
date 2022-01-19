@@ -163,11 +163,11 @@
         table.forEach(row =>
                 //Array of Type is tableRowArray
                 //JSON Object "Type" will need to encapsulate each Row
-                tableRowArray.push({"type" : JSON.parse(JSON.stringify(row))})
+                tableRowArray.push({"types" : {"type" : JSON.parse(JSON.stringify(row))}})
             )
             //JSON Object "Types" will encapsulate everything
-            var typesObject = {"types": tableRowArray}
-            console.log(JSON.stringify(typesObject))
+            //var typesObject = {"types": tableRowArray}
+            console.log(JSON.stringify(tableRowArray))
 
         //Variable will then be turned to XML, this has already be done in SaveFileDialog
         //const builder = new xml2js.Builder();
