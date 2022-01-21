@@ -77,19 +77,24 @@
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 PackJC Version 0.712
+        © 2022 PackJC Version 0.80
     </div>
 </footer>
 </html>
 
-<script src="./renderer.js">
-
-</script>
-
 <script>
+    //Import
     const {ipcRenderer} = require("electron");
     const xml2js = require("xml2js");
 
+    //Event Listeners
+    document.getElementById("getFile").addEventListener("click", getFileFunction);
+    document.getElementById("saveFile").addEventListener("click", saveFileFunction);
+    document.getElementById("help").addEventListener("click", getHelp);
+    document.getElementById("test").addEventListener("click", getTest);
+    document.getElementById("test").addEventListener("click", checkJSON);
+
+    //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
         console.log("successful file upload")
 
@@ -138,9 +143,8 @@
         //Change import button to local file path
         document.getElementById('getFile').innerHTML = data.toString()
     })
-    document.getElementById("getFile").addEventListener("click", getFileFunction);
-    document.getElementById("saveFile").addEventListener("click", saveFileFunction);
 
+    //Functions
     function getFileFunction() {
         ipcRenderer.send("getFileEvent")
     }
@@ -151,24 +155,36 @@
     function saveFileFunction() {
         ipcRenderer.send("saveFileEvent")
     }
-
-    document.getElementById("help").addEventListener("click", getHelp);
-    document.getElementById("test").addEventListener("click", getTest);
-    //outputs file contents in json string
-    document.getElementById("test").addEventListener("click", checkJSON);
-
     function getTest() {
-        //maybe create Type JSON object then add the contents?
+        var parser = new DOMParser();
         table = $('#myTable').tableToJSON()
-        var nK = {"types" : {"type" : table}}
-        console.log(JSON.stringify(nK))
-        //Variable will then be turned to XML, this has already be done in SaveFileDialog
+        var typeArr =  {"type" : table}
+        var typesArray = {"types" : typeArr}
         const builder = new xml2js.Builder();
-        const xml = builder.buildObject(nK);
-        console.log(xml)
+
+
+        
+        const xml = builder.buildObject(typesArray);
+        var xmlDoc = parser.parseFromString(xml, "application/xml");
+        console.log(xmlDoc)
+
+       // console.log(xmlDoc.)
+        var x = xmlDoc.getElementsByTagName("types")
+        for (i = 0; i < x.length ;i++) {
+            console.log(x[i])
+            //add attribute here
+        }
+
+
+
+        //Might need to edit XML before it goes to a file
+        //Set each row to an array, grab the [0] value, increasing to array.count
+
 
     }
+
     function getHelp() {
+        //Help page
         window.location.href = "help.html";
     }
 
@@ -228,9 +244,7 @@
         }
     }
 
-
-</script>
-<script>
+    //jQuery
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
@@ -239,7 +253,4 @@
             });
         });
     });
-
-
 </script>
-
