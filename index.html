@@ -26,7 +26,7 @@
             <a class="nav-link  btn btn-warning" id="help">Help</a>
         </li>
         <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-danger" id="test">Test</a>
+            <a class="nav-link  btn btn-danger" id="test">Settings[TEST]</a>
         </li>
     </ul>
 </nav>
@@ -100,7 +100,6 @@
     //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
         console.log("successful file upload")
-
         /*
         function categoryLoop(element) {
             if (element?.category?.length === 1) {
@@ -117,7 +116,7 @@
         let table = document.getElementById('myTBody')
         for (let i = 0; i < loopCounter; i++) {
             row = table.insertRow(0)
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].tag?.$?.name+"</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].tag?.[0].$.name+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].value?.$?.name+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].usage?.$?.name+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.deloot+"</div>"
@@ -174,14 +173,38 @@
             xmlNodes[i].setAttribute("name", xmlNodes[i].childNodes[1].firstChild.nodeValue)
             //Remove name node since it's added as attribute now
             xmlNodes[i].childNodes[1].remove()
+            var node, childNodes = xmlDoc.documentElement.childNodes;
+            for(var z = 0; z < childNodes.length; z++)
+            {
+                node = childNodes[z];
+                if(node.nodeType !== Node.TEXT_NODE){
+                    if(node.getElementsByTagName('category')[0]?.textContent === "undefined"){
+                        //console.log('REMOVE UNDEFINED HERE')
+                        //console.log(node.getElementsByTagName('category')[0]?.textContent)
+                        //Remove undefined element
+                        node.getElementsByTagName('category')[0].remove()
+                        //xmlNodes[i].childNodes[z].remove()
+
+                    }
+
+                    else if(node.getElementsByTagName('tag')[0]?.textContent !== "undefined"){
+                        node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
+                       // node.getElementsByTagName('tag')[0] = ("test")
+                        //remove inner text of element here
+                    }
+                    else if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
+                        //Remove undefined element
+                        node.getElementsByTagName('tag')[0].remove()
+                        //xmlNodes[i].childNodes[z].remove()
+
+                    }
+
+
+                }
+            }
+
         }
         console.log(xmlDoc)
-
-
-
-        //Might need to edit XML before it goes to a file
-        //Set each row to an array, grab the [0] value, increasing to array.count
-
     }
 
     function getHelp() {
