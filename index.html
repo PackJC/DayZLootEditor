@@ -147,12 +147,6 @@
         const xmlDoc = parser.parseFromString(xml, "application/xml")
         let xmlNodes = xmlDoc.getElementsByTagName("type")
 
-
-
-
-
-
-
         for (let i = 0; i < xmlNodes.length; i++) {
             //Add name attribute to Type
             xmlNodes[i].setAttribute("name", xmlNodes[i].childNodes[1].firstChild.nodeValue)
@@ -187,14 +181,12 @@
                     }
 
                     //Usage and  Value undefined need to be removed, but it isn't working like the rest
-                        //NOT WORKING
                     if(node.getElementsByTagName('usage')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('usage')[0].remove()
                         console.log('we removed a usage')
                     }
 
                     //Usage and  Value undefined need to be removed, but it isn't working like the rest
-                        //NOT WORKING
                     if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('value')[0].remove()
                         console.log('we removed a value')
