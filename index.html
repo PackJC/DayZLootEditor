@@ -99,8 +99,8 @@
         for (let i = 0; i < loopCounter; i++) {
             row = table.insertRow(0)
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].tag?.[0].$.name+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].value?.$?.name+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].usage?.$?.name+"</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].value?.[0].$?.name+"</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].usage?.[0].$?.name+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.deloot+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.crafted+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.count_in_player+"</div>"
@@ -167,22 +167,29 @@
                     if(node.getElementsByTagName('category')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('category')[0].remove()
                     }
-
                     else if(node.getElementsByTagName('tag')[0]?.textContent !== "undefined"){
                         node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
-
                         //remove inner text of element here
-
-                        //node.getElementsByTagName('tag')[0]?.nodeValue === "test"
+                        //NOT WORKING
 
                     }
                     else if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('tag')[0].remove()
                     }
 
-                    //Usage and  Value need to be removed, but it isn't working like the rest
+                    //Usage and  Value undefined need to be removed, but it isn't working like the rest
+                        //NOT WORKING
+                    else if(node.getElementsByTagName('usage')[0]?.textContent === "undefined"){
+                        node.getElementsByTagName('usage')[0].remove()
+                        console.log('we removed a usage')
+                    }
 
-
+                    //Usage and  Value undefined need to be removed, but it isn't working like the rest
+                        //NOT WORKING
+                    else if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){
+                        node.getElementsByTagName('value')[0].remove()
+                        console.log('we removed a value')
+                    }
                 }
             }
         }
@@ -198,7 +205,6 @@
                 node.getElementsByTagName('deloot')[0]?.remove()
             }
         }
-
         console.log(xmlDoc)
     }
 
