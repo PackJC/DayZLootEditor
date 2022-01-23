@@ -120,7 +120,6 @@
         document.querySelector('.save-btn').classList.remove('disabled')
     })
     ipcRenderer.on("updateImportButton", (event, data) => {
-        //Change import button to local file path
         document.getElementById('getFile').innerHTML = data.toString()
     })
 
@@ -146,7 +145,8 @@
         const xml = builder.buildObject(typesArray)
         const xmlDoc = parser.parseFromString(xml, "application/xml")
         let xmlNodes = xmlDoc.getElementsByTagName("type")
-
+        console.log('i Loops: ' + xmlNodes.length)
+        //ISSUE: LOOP GOES 200 TIMES, SHOULD ONLY BE LIKE 10, THEN THE ABOVE LOOP GOES 100 - THIS ISSUE NEEDS RESOLVED BEFORE 0.90
         for (let i = 0; i < xmlNodes.length; i++) {
             //Add name attribute to Type
             xmlNodes[i].setAttribute("name", xmlNodes[i].childNodes[1].firstChild.nodeValue)
@@ -155,7 +155,7 @@
             newText = xmlDoc.createElement("flags");
             xmlNodes[i].appendChild(newText)
             var node, childNodes = xmlDoc.documentElement.childNodes;
-            console.log(childNodes.length)
+            console.log('z Loops: ' + childNodes.length)
             for(var z = 0; z < childNodes.length; z++)
             {
 
@@ -172,29 +172,37 @@
                     }
                     else if(node.getElementsByTagName('tag')[0]?.textContent !== "undefined"){
                         node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
+                        var elementNode = node?.getElementsByTagName('tag')[0]
+
+
+
+
+
+
+                        //Text is removing the attribute as well, one of the last problem in the program
+                        if(elementNode) {
+                            const save =  node.getElementsByTagName('tag')[0]?.textContent
+                            node.getElementsByTagName('tag')[0]?.setAttribute("name", save)
+
+                        }
+
+
+
+
+
+
 
                     }
 
-                    else if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
+                    if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('tag')[0].remove()
-                        console.log('we removed a tag')
                     }
-
-                    //Usage and  Value undefined need to be removed, but it isn't working like the rest
                     if(node.getElementsByTagName('usage')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('usage')[0].remove()
-                        console.log('we removed a usage')
                     }
-
-                    //Usage and  Value undefined need to be removed, but it isn't working like the rest
                     if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('value')[0].remove()
-                        console.log('we removed a value')
                     }
-
-                }
-                else if(childNodes[z].nodeType === Node.TEXT_NODE) {
-                    childNodes[z].remove()
                 }
             }
         }
