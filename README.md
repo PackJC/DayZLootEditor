@@ -5,6 +5,8 @@
   A GUI made in Electron to configure DayZ Standalone Loot Tables
   <br>
  Created with Electron powered by Nodejs
+<br>
+Version 0.85
 </p>
 
 ## Reason
@@ -24,7 +26,7 @@ To start, open the file `types.xml`. This file is your servers loot table. On th
 
 ## Installing Project
 
-You must have Nodejs, npm, github, and relevant packages downloaded for the project to work. If you are running the
+You must have Nodejs, npm, GitHub, and relevant packages downloaded for the project to work. If you are running the
 source code, you must install the developer dependencies. If you are running the executable, then you can simply launcher the application with no further need to installation instruction. Otherwise, follow the directions below.
 <br>
 1. Move into the directory of the files
@@ -47,6 +49,7 @@ Electrum window should pop up, this window is the application.
 
 
 ## Screenshots
+Screenshot from Version 0.612
 ![Version 0 612](https://user-images.githubusercontent.com/34726562/149465980-e42794f9-bea0-4ca7-bbc1-0fb9458dc8ba.PNG)
 
 

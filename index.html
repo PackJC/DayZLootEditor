@@ -23,10 +23,10 @@
             <a class="nav-link btn btn-warning disabled save-btn" id="saveFile">Save</a>
         </li>
         <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-warning" id="help">Help</a>
+            <a class="nav-link  btn btn-warning" id="help">Settings</a>
         </li>
         <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-danger" id="test">Settings[TEST]</a>
+            <a class="nav-link  btn btn-danger" id="test">TEST EXPORT</a>
         </li>
     </ul>
 </nav>
@@ -40,38 +40,21 @@
         <th title="">name</th>
         <th title="Amount of the item allowed on the entire map">nominal</th>
         <th title="Lifetime of an item once it is spawned in seconds">lifetime</th>
-        <th
-                title="Amount of time that will need to pass before an item is allowed to spawn again">restock
-        </th>
+        <th title="Amount of time that will need to pass before an item is allowed to spawn again">restock</th>
         <th title="Amount of an item that will spawn on the map">min</th>
         <th title="Minimum quantity of consumable within the item">quantmin</th>
         <th title="Maximum quantity of consumable within the item">quantmax</th>
         <th title="category">category</th>
         <th title="Determines the spawn chance of an item">cost</th>
-        <th title="Count for this weapon will include inventory of vehicles towards Max">count_in_cargo
-        </th>
-        <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">
-            count_in_hoarder
-        </th>
-        <th title="Count for this weapon will include items in/on map towards Max.">count_in_map
-        </th>
-        <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">
-            count_in_player
-        </th>
+        <th title="Count for this weapon will include inventory of vehicles towards Max">count_in_cargo</th>
+        <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">count_in_hoarder</th>
+        <th title="Count for this weapon will include items in/on map towards Max.">count_in_map</th>
+        <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">count_in_player</th>
         <th title="Used only to mark player craftable items">crafted</th>
-        <th
-                title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">
-            deloot
-        </th>
-        <th>
-            usage
-        </th>
-        <th>
-            value
-        </th>
-        <th>
-            tag
-        </th>
+        <th title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">deloot</th>
+        <th>usage</th>
+        <th>value</th>
+        <th>tag</th>
     </tr>
     </thead>
     <tbody id="myTBody">
@@ -80,7 +63,7 @@
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 PackJC Version 0.80
+        © 2022 PackJC Version 0.85
     </div>
 </footer>
 </html>
@@ -95,7 +78,6 @@
     document.getElementById("saveFile").addEventListener("click", saveFileFunction);
     document.getElementById("help").addEventListener("click", getHelp);
     document.getElementById("test").addEventListener("click", getTest);
-    document.getElementById("test").addEventListener("click", checkJSON);
 
     //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
@@ -128,7 +110,7 @@
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].cost+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i]?.category?.[0].$?.name+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].quantmax+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].quantmin+"</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].quantmin+"</div>" //11
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].min+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].restock+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].lifetime+"</div>"
@@ -136,10 +118,6 @@
             row.insertCell(0).innerHTML = "<div>"+data.types.type[i].$.name+"</div>"
         }
         document.querySelector('.save-btn').classList.remove('disabled')
-    })
-    ipcRenderer.on("checkJSON", (event, data) => {
-        //Change import button to local file path
-        console.log(data)
     })
     ipcRenderer.on("updateImportButton", (event, data) => {
         //Change import button to local file path
@@ -173,43 +151,64 @@
             xmlNodes[i].setAttribute("name", xmlNodes[i].childNodes[1].firstChild.nodeValue)
             //Remove name node since it's added as attribute now
             xmlNodes[i].childNodes[1].remove()
+            newText = xmlDoc.createElement("flags");
+            xmlNodes[i].appendChild(newText)
             var node, childNodes = xmlDoc.documentElement.childNodes;
             for(var z = 0; z < childNodes.length; z++)
             {
                 node = childNodes[z];
                 if(node.nodeType !== Node.TEXT_NODE){
+                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_cargo", node.getElementsByTagName('count_in_cargo')[0]?.textContent)
+                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_hoarder", node.getElementsByTagName('count_in_hoarder')[0]?.textContent)
+                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_map", node.getElementsByTagName('count_in_map')[0]?.textContent)
+                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_player", node.getElementsByTagName('count_in_player')[0]?.textContent)
+                    node.getElementsByTagName('flags')[0]?.setAttribute("crafted", node.getElementsByTagName('crafted')[0]?.textContent)
+                    node.getElementsByTagName('flags')[0]?.setAttribute("deloot", node.getElementsByTagName('deloot')[0]?.textContent)
                     if(node.getElementsByTagName('category')[0]?.textContent === "undefined"){
-                        //console.log('REMOVE UNDEFINED HERE')
-                        //console.log(node.getElementsByTagName('category')[0]?.textContent)
-                        //Remove undefined element
                         node.getElementsByTagName('category')[0].remove()
-                        //xmlNodes[i].childNodes[z].remove()
-
                     }
 
                     else if(node.getElementsByTagName('tag')[0]?.textContent !== "undefined"){
                         node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
-                       // node.getElementsByTagName('tag')[0] = ("test")
+
                         //remove inner text of element here
-                    }
-                    else if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
-                        //Remove undefined element
-                        node.getElementsByTagName('tag')[0].remove()
-                        //xmlNodes[i].childNodes[z].remove()
+
+                        //node.getElementsByTagName('tag')[0]?.nodeValue === "test"
 
                     }
+                    else if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
+                        node.getElementsByTagName('tag')[0].remove()
+                    }
+
+                    //Usage and  Value need to be removed, but it isn't working like the rest
+
 
 
                 }
             }
 
         }
+
+        var node, childNodes = xmlDoc.documentElement.childNodes;
+        for(var z = 0; z < childNodes.length; z++) {
+            node = childNodes[z];
+            if(node.nodeType !== Node.TEXT_NODE) {
+
+                node.getElementsByTagName('count_in_cargo')[0]?.remove()
+                node.getElementsByTagName('count_in_hoarder')[0]?.remove()
+                node.getElementsByTagName('count_in_map')[0]?.remove()
+                node.getElementsByTagName('count_in_player')[0]?.remove()
+                node.getElementsByTagName('crafted')[0]?.remove()
+                node.getElementsByTagName('deloot')[0]?.remove()
+            }
+        }
+
         console.log(xmlDoc)
     }
 
     function getHelp() {
         //Help page redirect
-        window.location.href = "help.html";
+        window.location.href = "settings.html";
     }
 
     //jQuery for table search box
