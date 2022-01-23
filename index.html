@@ -167,7 +167,6 @@
 
                 if(childNodes[z].nodeType !== Node.TEXT_NODE){
                     node = childNodes[z];
-                    if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){ console.log('UNDEFINED' + node.getElementsByTagName('value')[0]?.textContent)}
                     node.getElementsByTagName('flags')[0]?.setAttribute("count_in_cargo", node.getElementsByTagName('count_in_cargo')[0]?.textContent)
                     node.getElementsByTagName('flags')[0]?.setAttribute("count_in_hoarder", node.getElementsByTagName('count_in_hoarder')[0]?.textContent)
                     node.getElementsByTagName('flags')[0]?.setAttribute("count_in_map", node.getElementsByTagName('count_in_map')[0]?.textContent)
@@ -180,7 +179,6 @@
                     else if(node.getElementsByTagName('tag')[0]?.textContent !== "undefined"){
                         node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
 
-
                     }
 
                     else if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
@@ -190,14 +188,14 @@
 
                     //Usage and  Value undefined need to be removed, but it isn't working like the rest
                         //NOT WORKING
-                    else if(node.getElementsByTagName('usage')[0]?.textContent === "undefined"){
+                    if(node.getElementsByTagName('usage')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('usage')[0].remove()
                         console.log('we removed a usage')
                     }
 
                     //Usage and  Value undefined need to be removed, but it isn't working like the rest
                         //NOT WORKING
-                    else if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){
+                    if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){
                         node.getElementsByTagName('value')[0].remove()
                         console.log('we removed a value')
                     }
