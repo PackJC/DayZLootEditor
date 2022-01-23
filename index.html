@@ -156,8 +156,8 @@
             var node, childNodes = xmlDoc.documentElement.childNodes;
             for(var z = 0; z < childNodes.length; z++)
             {
-                node = childNodes[z];
-                if(node.nodeType !== Node.TEXT_NODE){
+                if(childNodes[z].nodeType !== Node.TEXT_NODE){
+                    node = childNodes[z];
                     node.getElementsByTagName('flags')[0]?.setAttribute("count_in_cargo", node.getElementsByTagName('count_in_cargo')[0]?.textContent)
                     node.getElementsByTagName('flags')[0]?.setAttribute("count_in_hoarder", node.getElementsByTagName('count_in_hoarder')[0]?.textContent)
                     node.getElementsByTagName('flags')[0]?.setAttribute("count_in_map", node.getElementsByTagName('count_in_map')[0]?.textContent)
@@ -183,17 +183,13 @@
                     //Usage and  Value need to be removed, but it isn't working like the rest
 
 
-
                 }
             }
-
         }
-
         var node, childNodes = xmlDoc.documentElement.childNodes;
         for(var z = 0; z < childNodes.length; z++) {
-            node = childNodes[z];
-            if(node.nodeType !== Node.TEXT_NODE) {
-
+            if(childNodes[z].nodeType !== Node.TEXT_NODE) {
+                node = childNodes[z];
                 node.getElementsByTagName('count_in_cargo')[0]?.remove()
                 node.getElementsByTagName('count_in_hoarder')[0]?.remove()
                 node.getElementsByTagName('count_in_map')[0]?.remove()
