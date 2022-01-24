@@ -47,11 +47,16 @@
         <th title="category">category</th>
         <th title="Determines the spawn chance of an item">cost</th>
         <th title="Count for this weapon will include inventory of vehicles towards Max">count_in_cargo</th>
-        <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">count_in_hoarder</th>
+        <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">
+            count_in_hoarder
+        </th>
         <th title="Count for this weapon will include items in/on map towards Max.">count_in_map</th>
-        <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">count_in_player</th>
+        <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">
+            count_in_player
+        </th>
         <th title="Used only to mark player craftable items">crafted</th>
-        <th title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">deloot</th>
+        <th title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">deloot
+        </th>
         <th>usage</th>
         <th>value</th>
         <th>tag</th>
@@ -63,7 +68,7 @@
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 PackJC Version 0.85
+        © 2022 PackJC Version 0.8510
     </div>
 </footer>
 </html>
@@ -98,24 +103,24 @@
         let table = document.getElementById('myTBody')
         for (let i = 0; i < loopCounter; i++) {
             row = table.insertRow(0)
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].tag?.[0].$.name+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i]?.value?.[0].$?.name+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i]?.usage?.[0].$?.name+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.deloot+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.crafted+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.count_in_player+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.count_in_map+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.count_in_hoarder+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].flags[0].$.count_in_cargo+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].cost+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i]?.category?.[0].$?.name+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].quantmax+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].quantmin+"</div>" //11
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].min+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].restock+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].lifetime+"</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>"+data.types.type[i].nominal+"</div>"
-            row.insertCell(0).innerHTML = "<div>"+data.types.type[i].$.name+"</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].tag?.[0].$.name + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.value?.[0].$?.name + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.usage?.[0].$?.name + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.deloot + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.crafted + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_player + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_map + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_hoarder + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_cargo + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].cost + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.category?.[0].$?.name + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].quantmax + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].quantmin + "</div>" //11
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].min + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].restock + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].lifetime + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].nominal + "</div>"
+            row.insertCell(0).innerHTML = "<div>" + data.types.type[i].$.name + "</div>"
         }
         document.querySelector('.save-btn').classList.remove('disabled')
     })
@@ -144,9 +149,10 @@
         const builder = new xml2js.Builder()
         const xml = builder.buildObject(typesArray)
         const xmlDoc = parser.parseFromString(xml, "application/xml")
+
+
         let xmlNodes = xmlDoc.getElementsByTagName("type")
         console.log('i Loops: ' + xmlNodes.length)
-        //ISSUE: LOOP GOES 200 TIMES, SHOULD ONLY BE LIKE 10, THEN THE ABOVE LOOP GOES 100 - THIS ISSUE NEEDS RESOLVED BEFORE 0.90
         for (let i = 0; i < xmlNodes.length; i++) {
             //Add name attribute to Type
             xmlNodes[i].setAttribute("name", xmlNodes[i].childNodes[1].firstChild.nodeValue)
@@ -154,62 +160,76 @@
             xmlNodes[i].childNodes[1].remove()
             newText = xmlDoc.createElement("flags");
             xmlNodes[i].appendChild(newText)
-            var node, childNodes = xmlDoc.documentElement.childNodes;
-            console.log('z Loops: ' + childNodes.length)
-            for(var z = 0; z < childNodes.length; z++)
-            {
+        }
 
-                if(childNodes[z].nodeType !== Node.TEXT_NODE){
-                    node = childNodes[z];
-                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_cargo", node.getElementsByTagName('count_in_cargo')[0]?.textContent)
-                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_hoarder", node.getElementsByTagName('count_in_hoarder')[0]?.textContent)
-                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_map", node.getElementsByTagName('count_in_map')[0]?.textContent)
-                    node.getElementsByTagName('flags')[0]?.setAttribute("count_in_player", node.getElementsByTagName('count_in_player')[0]?.textContent)
-                    node.getElementsByTagName('flags')[0]?.setAttribute("crafted", node.getElementsByTagName('crafted')[0]?.textContent)
-                    node.getElementsByTagName('flags')[0]?.setAttribute("deloot", node.getElementsByTagName('deloot')[0]?.textContent)
-                    if(node.getElementsByTagName('category')[0]?.textContent === "undefined"){
-                        node.getElementsByTagName('category')[0].remove()
+        var node, childNodes = xmlDoc.documentElement.childNodes;
+        console.log('z Loops: ' + childNodes.length)
+        for (var z = 0; z < childNodes.length; z++) {
+
+            if (childNodes[z].nodeType !== Node.TEXT_NODE) {
+                node = childNodes[z];
+                /*
+                Sets attribute for XML Nodes
+                */
+                node.getElementsByTagName('flags')[0]?.setAttribute("count_in_cargo", node.getElementsByTagName('count_in_cargo')[0]?.textContent)
+                node.getElementsByTagName('flags')[0]?.setAttribute("count_in_hoarder", node.getElementsByTagName('count_in_hoarder')[0]?.textContent)
+                node.getElementsByTagName('flags')[0]?.setAttribute("count_in_map", node.getElementsByTagName('count_in_map')[0]?.textContent)
+                node.getElementsByTagName('flags')[0]?.setAttribute("count_in_player", node.getElementsByTagName('count_in_player')[0]?.textContent)
+                node.getElementsByTagName('flags')[0]?.setAttribute("crafted", node.getElementsByTagName('crafted')[0]?.textContent)
+                node.getElementsByTagName('flags')[0]?.setAttribute("deloot", node.getElementsByTagName('deloot')[0]?.textContent)
+                node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
+                node.getElementsByTagName('category')[0]?.setAttribute("name", node.getElementsByTagName('category')[0]?.textContent)
+                node.getElementsByTagName('usage')[0]?.setAttribute("name", node.getElementsByTagName('usage')[0]?.textContent)
+                node.getElementsByTagName('value')[0]?.setAttribute("name", node.getElementsByTagName('value')[0]?.textContent)
+
+                /*
+                Removes Undefined XML Nodes
+                */
+                if (node.getElementsByTagName('category')[0]?.textContent === "undefined") {
+                    node.getElementsByTagName('category')[0].remove()
+                }
+                if (node.getElementsByTagName('tag')[0]?.textContent === "undefined") {
+                    node.getElementsByTagName('tag')[0].remove()
+                }
+                if (node.getElementsByTagName('usage')[0]?.textContent === "undefined") {
+                    node.getElementsByTagName('usage')[0].remove()
+                }
+                if (node.getElementsByTagName('value')[0]?.textContent === "undefined") {
+                    node.getElementsByTagName('value')[0].remove()
+                }
+                /*
+                Removes XML Node Text
+                 */
+                if (node.getElementsByTagName('tag')[0]?.textContent !== "undefined") {
+                    var tagNode = node?.getElementsByTagName('tag')[0]
+                    if (tagNode) {
+                        tagNode.textContent = ""
                     }
-                    else if(node.getElementsByTagName('tag')[0]?.textContent !== "undefined"){
-                        node.getElementsByTagName('tag')[0]?.setAttribute("name", node.getElementsByTagName('tag')[0]?.textContent)
-                        var elementNode = node?.getElementsByTagName('tag')[0]
-
-
-
-
-
-
-                        //Text is removing the attribute as well, one of the last problem in the program
-                        if(elementNode) {
-                            const save =  node.getElementsByTagName('tag')[0]?.textContent
-                            node.getElementsByTagName('tag')[0]?.setAttribute("name", save)
-
-                        }
-
-
-
-
-
-
-
+                }
+                if (node.getElementsByTagName('category')[0]?.textContent !== "undefined") {
+                    var categoryNode = node?.getElementsByTagName('category')[0]
+                    if (categoryNode) {
+                        categoryNode.textContent = ""
                     }
-
-                    if(node.getElementsByTagName('tag')[0]?.textContent === "undefined"){
-                        node.getElementsByTagName('tag')[0].remove()
+                }
+                if (node.getElementsByTagName('value')[0]?.textContent !== "undefined") {
+                    var categoryNode = node?.getElementsByTagName('value')[0]
+                    if (categoryNode) {
+                        categoryNode.textContent = ""
                     }
-                    if(node.getElementsByTagName('usage')[0]?.textContent === "undefined"){
-                        node.getElementsByTagName('usage')[0].remove()
-                    }
-                    if(node.getElementsByTagName('value')[0]?.textContent === "undefined"){
-                        node.getElementsByTagName('value')[0].remove()
+                }
+                if (node.getElementsByTagName('usage')[0]?.textContent !== "undefined") {
+                    var categoryNode = node?.getElementsByTagName('usage')[0]
+                    if (categoryNode) {
+                        categoryNode.textContent = ""
                     }
                 }
             }
         }
-        var node, childNodes = xmlDoc.documentElement.childNodes;
-        for(var z = 0; z < childNodes.length; z++) {
-            if(childNodes[z].nodeType !== Node.TEXT_NODE) {
-                node = childNodes[z];
+
+        for (var h = 0; h < childNodes.length; h++) {
+            if (childNodes[h].nodeType !== Node.TEXT_NODE) {
+                node = childNodes[h];
                 node.getElementsByTagName('count_in_cargo')[0]?.remove()
                 node.getElementsByTagName('count_in_hoarder')[0]?.remove()
                 node.getElementsByTagName('count_in_map')[0]?.remove()
