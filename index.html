@@ -87,25 +87,29 @@
     //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
         console.log("successful file upload")
-        /*
-        function categoryLoop(element) {
-            if (element?.category?.length === 1) {
-                for (let x = 0; x < element.category.length; x++) {
-                    return (element?.category?.[0]?.$?.name)
+        function getUsage(typeElement) {
+            if(typeElement !== undefined){
+                console.log(typeElement.length)
+                for(let o = 0; o < typeElement.length; i++){
+
+                    
                 }
-            } else {
+            }
+            else{
+                console.log(typeElement + 'was undefined')
                 return ""
             }
         }
-        */
 
         let loopCounter = data.types.type.length
         let table = document.getElementById('myTBody')
         for (let i = 0; i < loopCounter; i++) {
             row = table.insertRow(0)
+            let usageCount = data.types.type[i]?.usage?.length
+            let valueCount = data.types.type[i]?.value?.length
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].tag?.[0].$.name + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.value?.[0].$?.name + "</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.usage?.[0].$?.name + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.usage?.[0].$?.name + getUsage(data.types.type[i]?.usage)+"</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.deloot + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.crafted + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_player + "</div>"
