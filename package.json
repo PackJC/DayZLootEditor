@@ -17,8 +17,9 @@
   "author": "PackJC",
   "license": "CC0-1.0",
   "devDependencies": {
-    "chokidar": "^3.5.2",
-    "electron": "^16.0.5",
+    "chokidar": "^3.5.3",
+    "electron": "^16.0.7",
+    "electron-packager": "^15.4.0",
     "electron-reloader": "^1.2.1",
     "file-saver": "^2.0.5",
     "fs-extra": "^10.0.0",
@@ -28,6 +29,6 @@
     "bootstrap": "^5.1.3",
     "jquery": "^3.6.0",
     "open": "^8.4.0",
-    "popper": "^1.0.1"
+    "xml2js": "^0.4.23"
   }
 }

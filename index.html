@@ -68,15 +68,19 @@
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 PackJC Version 0.8510
+        © 2022 PackJC Version 0.90
     </div>
 </footer>
 </html>
 
 <script>
     //Import
-    const {ipcRenderer} = require("electron");
+    const {ipcRenderer, dialog, app} = require("electron");
+    const path = require('path')
     const xml2js = require("xml2js");
+    const fs = require('fs');
+    const electron = require("electron");
+    const {BrowserWindow, ipcMain} = electron;
 
     //Event Listeners
     document.getElementById("getFile").addEventListener("click", getFileFunction);
@@ -87,29 +91,19 @@
     //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
         console.log("successful file upload")
-        function getUsage(typeElement) {
-            if(typeElement !== undefined){
-                console.log(typeElement.length)
-                for(let o = 0; o < typeElement.length; i++){
 
-                    
-                }
-            }
-            else{
-                console.log(typeElement + 'was undefined')
-                return ""
-            }
-        }
 
         let loopCounter = data.types.type.length
         let table = document.getElementById('myTBody')
         for (let i = 0; i < loopCounter; i++) {
             row = table.insertRow(0)
-            let usageCount = data.types.type[i]?.usage?.length
-            let valueCount = data.types.type[i]?.value?.length
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].tag?.[0].$.name + "</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.value?.[0].$?.name + "</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.usage?.[0].$?.name + getUsage(data.types.type[i]?.usage)+"</div>"
+            let category = data.types.type[i]?.category?.[0].$?.name ?? "N / A"
+            let usage1 = data.types.type[i]?.usage?.[0].$?.name ?? "N / A"
+            let value1 = data.types.type[i]?.value?.[0].$?.name ?? "N / A"
+            let tag = data.types.type[i].tag?.[0].$?.name ?? "N / A"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + tag + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + value1 + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage1 + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.deloot + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.crafted + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_player + "</div>"
@@ -117,7 +111,7 @@
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_hoarder + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_cargo + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].cost + "</div>"
-            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i]?.category?.[0].$?.name + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + category + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].quantmax + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].quantmin + "</div>" //11
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].min + "</div>"
@@ -164,6 +158,7 @@
             xmlNodes[i].childNodes[1].remove()
             newText = xmlDoc.createElement("flags");
             xmlNodes[i].appendChild(newText)
+
         }
 
         var node, childNodes = xmlDoc.documentElement.childNodes;
@@ -185,20 +180,23 @@
                 node.getElementsByTagName('category')[0]?.setAttribute("name", node.getElementsByTagName('category')[0]?.textContent)
                 node.getElementsByTagName('usage')[0]?.setAttribute("name", node.getElementsByTagName('usage')[0]?.textContent)
                 node.getElementsByTagName('value')[0]?.setAttribute("name", node.getElementsByTagName('value')[0]?.textContent)
-
+                //node.getElementsByTagName('usage')[1]?.setAttribute("name", node.getElementsByTagName('usage')[1]?.textContent)
+                //node.getElementsByTagName('value')[1]?.setAttribute("name", node.getElementsByTagName('value')[1]?.textContent)
+                //node.getElementsByTagName('usage')[2]?.setAttribute("name", node.getElementsByTagName('usage')[2]?.textContent)
+                //node.getElementsByTagName('value')[2]?.setAttribute("name", node.getElementsByTagName('value')[2]?.textContent)
                 /*
                 Removes Undefined XML Nodes
                 */
-                if (node.getElementsByTagName('category')[0]?.textContent === "undefined") {
+                if (node.getElementsByTagName('category')[0]?.textContent === "undefined" || node.getElementsByTagName('category')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('category')[0].remove()
                 }
-                if (node.getElementsByTagName('tag')[0]?.textContent === "undefined") {
+                if (node.getElementsByTagName('tag')[0]?.textContent === "undefined" || node.getElementsByTagName('tag')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('tag')[0].remove()
                 }
-                if (node.getElementsByTagName('usage')[0]?.textContent === "undefined") {
+                if (node.getElementsByTagName('usage')[0]?.textContent === "undefined" || node.getElementsByTagName('usage')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('usage')[0].remove()
                 }
-                if (node.getElementsByTagName('value')[0]?.textContent === "undefined") {
+                if (node.getElementsByTagName('value')[0]?.textContent === "undefined" || node.getElementsByTagName('value')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('value')[0].remove()
                 }
                 /*
@@ -242,7 +240,9 @@
                 node.getElementsByTagName('deloot')[0]?.remove()
             }
         }
+
         console.log(xmlDoc)
+
     }
 
     function getHelp() {

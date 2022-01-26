@@ -40,7 +40,6 @@ app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 })
 
-
 ipcMain.on("getFileEvent", (event) => {
     options = {
         title: "Select XML Files to import",
