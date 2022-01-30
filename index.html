@@ -75,12 +75,9 @@
 
 <script>
     //Import
-    const {ipcRenderer, dialog, app} = require("electron");
-    const path = require('path')
+    const {ipcRenderer, app} = require("electron");
     const xml2js = require("xml2js");
-    const fs = require('fs');
     const electron = require("electron");
-    const {BrowserWindow, ipcMain} = electron;
 
     //Event Listeners
     document.getElementById("getFile").addEventListener("click", getFileFunction);
@@ -91,8 +88,6 @@
     //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
         console.log("successful file upload")
-
-
         let loopCounter = data.types.type.length
         let table = document.getElementById('myTBody')
         for (let i = 0; i < loopCounter; i++) {
@@ -147,8 +142,6 @@
         const builder = new xml2js.Builder()
         const xml = builder.buildObject(typesArray)
         const xmlDoc = parser.parseFromString(xml, "application/xml")
-
-
         let xmlNodes = xmlDoc.getElementsByTagName("type")
         console.log('i Loops: ' + xmlNodes.length)
         for (let i = 0; i < xmlNodes.length; i++) {
@@ -158,7 +151,6 @@
             xmlNodes[i].childNodes[1].remove()
             newText = xmlDoc.createElement("flags");
             xmlNodes[i].appendChild(newText)
-
         }
 
         var node, childNodes = xmlDoc.documentElement.childNodes;
@@ -242,7 +234,7 @@
         }
 
         console.log(xmlDoc)
-
+        
     }
 
     function getHelp() {
