@@ -88,6 +88,7 @@ ipcMain.on("saveFileEvent", (event) => {
             console.log(localDataFile)
             const builder = new xml2js.Builder();
             const xml = builder.buildObject((JSON.parse(localDataFile)));
+            console.log(xml)
             fs.writeFile(result.filePath, xml, (err) => {
             });
         } else {

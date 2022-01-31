@@ -78,6 +78,8 @@
     const {ipcRenderer, app} = require("electron");
     const xml2js = require("xml2js");
     const electron = require("electron");
+    const FileSaver = require ("file-saver");
+    const {writeFile} = require("fs");
 
     //Event Listeners
     document.getElementById("getFile").addEventListener("click", getFileFunction);
@@ -234,7 +236,9 @@
         }
 
         console.log(xmlDoc)
-        
+        writeFile('desktop', xml, (err) => {
+        });
+
     }
 
     function getHelp() {
