@@ -96,3 +96,7 @@ ipcMain.on("saveFileEvent", () => {
         }
     })
 })
+
+ipcMain.on("doc", async (doc1) => {
+    console.log("test yer reckon" + doc1)
+})
