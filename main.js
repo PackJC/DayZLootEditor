@@ -73,7 +73,12 @@ ipcMain.on("getFileEvent", (event) => {
     })
 })
 
-ipcMain.on("saveFileEvent", () => {
+ipcMain.on("doc", async (event, data) => {
+    console.log("test yer reckon" + data)
+    savethefile(data.trim());
+})
+
+function savethefile(thedata) {
     let options = {
         title: "Select XML Files to export",
         buttonLabel: "Save",
@@ -84,19 +89,10 @@ ipcMain.on("saveFileEvent", () => {
     }
     dialog.showSaveDialog(options).then((result) => {
         if (false === result.canceled) {
-            localDataFile = JSON.stringify(localDataFile)
-            console.log(localDataFile)
-            const builder = new xml2js.Builder();
-            const xml = builder.buildObject((JSON.parse(localDataFile)));
-            console.log(xml)
-            fs.writeFile(result.filePath, xml, () => {
+            fs.writeFile(result.filePath, thedata, () => {
             });
         } else {
             console.warn("File was not selected!")
         }
     })
-})
-
-ipcMain.on("doc", async (doc1) => {
-    console.log("test yer reckon" + doc1)
-})
+}

@@ -25,12 +25,6 @@
         <li class="nav-item p-3 align-self-center">
             <a class="nav-link  btn btn-warning" id="help">Settings</a>
         </li>
-        <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-danger" id="test">TEST EXPORT</a>
-        </li>
-        <li class="nav-item p-3 align-self-center">
-            <a class="nav-link  btn btn-danger" id="export">EXPORT</a>
-        </li>
     </ul>
 </nav>
 <br>
@@ -81,14 +75,11 @@
     const {ipcRenderer, app} = require("electron");
     const xml2js = require("xml2js");
     const electron = require("electron");
-    const {writeFile} = require("fs");
     let xmlDoc;
     //Event Listeners
     document.getElementById("getFile").addEventListener("click", getFileFunction);
-    document.getElementById("saveFile").addEventListener("click", saveFileFunction);
+    document.getElementById("saveFile").addEventListener("click", sendXML);
     document.getElementById("help").addEventListener("click", getHelp);
-    document.getElementById("test").addEventListener("click", getTest);
-    document.getElementById("export").addEventListener("click", sendXML);
 
     //IPC
     ipcRenderer.on("receiveDataReply", (event, data) => {
@@ -136,9 +127,8 @@
     }
 
     function sendXML(){
-        let doc1 = "THE DATA HAS BEEN RECEIVED"
-        //let doc1 = getTest();
-        ipcRenderer.send("doc", doc1);
+        var sXML = new XMLSerializer().serializeToString(getTest());
+        ipcRenderer.send("doc", sXML);
     }
 
     function saveFileFunction() {
