@@ -78,7 +78,6 @@
     const {ipcRenderer, app} = require("electron");
     const xml2js = require("xml2js");
     const electron = require("electron");
-    const FileSaver = require ("file-saver");
     const {writeFile} = require("fs");
 
     //Event Listeners
@@ -93,7 +92,7 @@
         let loopCounter = data.types.type.length
         let table = document.getElementById('myTBody')
         for (let i = 0; i < loopCounter; i++) {
-            row = table.insertRow(0)
+            let row = table.insertRow(0)
             let category = data.types.type[i]?.category?.[0].$?.name ?? "N / A"
             let usage1 = data.types.type[i]?.usage?.[0].$?.name ?? "N / A"
             let value1 = data.types.type[i]?.value?.[0].$?.name ?? "N / A"
@@ -151,13 +150,13 @@
             xmlNodes[i].setAttribute("name", xmlNodes[i].childNodes[1].firstChild.nodeValue)
             //Remove name node since it's added as attribute now
             xmlNodes[i].childNodes[1].remove()
-            newText = xmlDoc.createElement("flags");
+            let newText = xmlDoc.createElement("flags");
             xmlNodes[i].appendChild(newText)
         }
 
-        var node, childNodes = xmlDoc.documentElement.childNodes;
+        let node, childNodes = xmlDoc.documentElement.childNodes;
         console.log('z Loops: ' + childNodes.length)
-        for (var z = 0; z < childNodes.length; z++) {
+        for (let z = 0; z < childNodes.length; z++) {
 
             if (childNodes[z].nodeType !== Node.TEXT_NODE) {
                 node = childNodes[z];
@@ -197,25 +196,25 @@
                 Removes XML Node Text
                  */
                 if (node.getElementsByTagName('tag')[0]?.textContent !== "undefined") {
-                    var tagNode = node?.getElementsByTagName('tag')[0]
+                    let tagNode = node?.getElementsByTagName('tag')[0]
                     if (tagNode) {
                         tagNode.textContent = ""
                     }
                 }
                 if (node.getElementsByTagName('category')[0]?.textContent !== "undefined") {
-                    var categoryNode = node?.getElementsByTagName('category')[0]
+                    let categoryNode = node?.getElementsByTagName('category')[0]
                     if (categoryNode) {
                         categoryNode.textContent = ""
                     }
                 }
                 if (node.getElementsByTagName('value')[0]?.textContent !== "undefined") {
-                    var categoryNode = node?.getElementsByTagName('value')[0]
+                    let categoryNode = node?.getElementsByTagName('value')[0]
                     if (categoryNode) {
                         categoryNode.textContent = ""
                     }
                 }
                 if (node.getElementsByTagName('usage')[0]?.textContent !== "undefined") {
-                    var categoryNode = node?.getElementsByTagName('usage')[0]
+                    let categoryNode = node?.getElementsByTagName('usage')[0]
                     if (categoryNode) {
                         categoryNode.textContent = ""
                     }
@@ -223,7 +222,7 @@
             }
         }
 
-        for (var h = 0; h < childNodes.length; h++) {
+        for (let h = 0; h < childNodes.length; h++) {
             if (childNodes[h].nodeType !== Node.TEXT_NODE) {
                 node = childNodes[h];
                 node.getElementsByTagName('count_in_cargo')[0]?.remove()
@@ -239,9 +238,8 @@
         //localDataFile = JSON.stringify(localDataFile)
         //console.log(localDataFile)
         //const builder = new xml2js.Builder();
-        const TestFile = builder.buildObject(xmlDoc)
-
-        writeFile('desktop', TestFile, (err) => {
+        console.log(xmlDoc)
+        writeFile('desktop', xmlDoc, () => {
         });
 
     }
@@ -254,7 +252,7 @@
     //jQuery for table search box
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
+            let value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });

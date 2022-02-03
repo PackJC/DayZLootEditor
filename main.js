@@ -41,7 +41,7 @@ app.on('window-all-closed', function () {
 })
 
 ipcMain.on("getFileEvent", (event) => {
-    options = {
+    let options = {
         title: "Select XML Files to import",
         buttonLabel: "Import .XML File",
         defaultPath: app.getPath('desktop'),
@@ -51,7 +51,7 @@ ipcMain.on("getFileEvent", (event) => {
         ],
     }
     dialog.showOpenDialog(options).then((result) => {
-        pages = result.filePaths
+        let pages = result.filePaths
         let filePath = result.filePaths.toString()
         if (false === result.canceled) {
             const data = fs.readFileSync(filePath,
@@ -62,7 +62,7 @@ ipcMain.on("getFileEvent", (event) => {
                 }
                 localDataFile = result
             });
-            localD = JSON.stringify(localDataFile)
+            let localD = JSON.stringify(localDataFile)
             console.log(localD)
             event.reply("checkJSON", localD)
             event.reply("receiveDataReply", localDataFile)
@@ -73,8 +73,8 @@ ipcMain.on("getFileEvent", (event) => {
     })
 })
 
-ipcMain.on("saveFileEvent", (event) => {
-    options = {
+ipcMain.on("saveFileEvent", () => {
+    let options = {
         title: "Select XML Files to export",
         buttonLabel: "Save",
         defaultPath: app.getPath('desktop'),
@@ -89,7 +89,7 @@ ipcMain.on("saveFileEvent", (event) => {
             const builder = new xml2js.Builder();
             const xml = builder.buildObject((JSON.parse(localDataFile)));
             console.log(xml)
-            fs.writeFile(result.filePath, xml, (err) => {
+            fs.writeFile(result.filePath, xml, () => {
             });
         } else {
             console.warn("File was not selected!")
