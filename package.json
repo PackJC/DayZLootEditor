@@ -1,6 +1,6 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
+  "name": "dayz-xml-editor-suite",
+  "version": "0.9.5",
   "description": "DayZ XML Editor Suite",
   "main": "main.js",
   "scripts": {
@@ -8,11 +8,11 @@
   },
   "repository": "https://github.com/PackJC/DayZLootEditor",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "DayZ",
+    "XML",
+    "Editor",
+    "edit",
+    "server tool"
   ],
   "author": "PackJC",
   "license": "CC0-1.0",

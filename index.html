@@ -65,7 +65,7 @@
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 PackJC Version 0.90
+        © 2022 PackJC Version 0.95
     </div>
 </footer>
 </html>
@@ -131,9 +131,6 @@
         ipcRenderer.send("doc", sXML);
     }
 
-    function saveFileFunction() {
-        ipcRenderer.send("saveFileEvent")
-    }
 
     function getTest() {
         const parser = new DOMParser()
