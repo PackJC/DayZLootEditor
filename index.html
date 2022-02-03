@@ -235,8 +235,13 @@
             }
         }
 
-        console.log(xmlDoc)
-        writeFile('desktop', xml, (err) => {
+        //console.log(xmlDoc)
+        //localDataFile = JSON.stringify(localDataFile)
+        //console.log(localDataFile)
+        //const builder = new xml2js.Builder();
+        const TestFile = builder.buildObject(xmlDoc)
+
+        writeFile('desktop', TestFile, (err) => {
         });
 
     }
