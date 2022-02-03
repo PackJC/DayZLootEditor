@@ -6,7 +6,7 @@
   <br>
  Created with Electron powered by Nodejs
 <br>
-Version 0.85
+Version 0.95
 </p>
 
 ## Reason
@@ -49,8 +49,8 @@ Electrum window should pop up, this window is the application.
 
 
 ## Screenshots
-Screenshot from Version 0.612
-![Version 0 612](https://user-images.githubusercontent.com/34726562/149465980-e42794f9-bea0-4ca7-bbc1-0fb9458dc8ba.PNG)
+Screenshot from Version 0.95
+![screenshot0 95](https://user-images.githubusercontent.com/34726562/152403124-0056b038-8bb0-4dce-a85b-fe40b1506abf.PNG)
 
 
 
