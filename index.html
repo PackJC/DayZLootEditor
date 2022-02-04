@@ -127,19 +127,19 @@
     }
 
     function sendXML(){
-        var sXML = new XMLSerializer().serializeToString(getTest());
+        let sXML = new XMLSerializer().serializeToString(getXMLTable());
         ipcRenderer.send("doc", sXML);
     }
 
 
-    function getTest() {
+    function getXMLTable() {
         const parser = new DOMParser()
         const table = $('#myTable').tableToJSON()
         const typeArr = {"type": table}
         const typesArray = {"types": typeArr}
         const builder = new xml2js.Builder()
         const xml = builder.buildObject(typesArray)
-        xmlDoc = parser.parseFromString(xml, "application/xml")
+        xmlDoc = parser.parseFromString(xml.trim(), "application/xml")
         let xmlNodes = xmlDoc.getElementsByTagName("type")
         console.log('i Loops: ' + xmlNodes.length)
         for (let i = 0; i < xmlNodes.length; i++) {
@@ -149,6 +149,11 @@
             xmlNodes[i].childNodes[1].remove()
             let newText = xmlDoc.createElement("flags");
             xmlNodes[i].appendChild(newText)
+            for(let x = 0; x < xmlNodes.length; x++){
+                if(xmlNodes?.[i]?.childNodes[i] === undefined){
+                    xmlNodes?.[i]?.childNodes?.[i]?.remove()
+                }
+            }
         }
 
         let node, childNodes = xmlDoc.documentElement.childNodes;
@@ -189,6 +194,7 @@
                 if (node.getElementsByTagName('value')[0]?.textContent === "undefined" || node.getElementsByTagName('value')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('value')[0].remove()
                 }
+
                 /*
                 Removes XML Node Text
                  */
@@ -230,7 +236,7 @@
                 node.getElementsByTagName('deloot')[0]?.remove()
             }
         }
-
+        console.log(xmlDoc)
         return xmlDoc;
     }
 

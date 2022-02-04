@@ -25,8 +25,8 @@ function createWindow() {
             nodeIntegrationInWorker: true,
         }
     })
-    mainWindow.loadFile('index.html')
-    //mainWindow.webContents.openDevTools()
+    mainWindow.loadFile('index.html').then(r => r)
+    mainWindow.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
@@ -63,7 +63,6 @@ ipcMain.on("getFileEvent", (event) => {
                 localDataFile = result
             });
             let localD = JSON.stringify(localDataFile)
-            console.log(localD)
             event.reply("checkJSON", localD)
             event.reply("receiveDataReply", localDataFile)
             event.reply("updateImportButton", pages)
@@ -74,11 +73,12 @@ ipcMain.on("getFileEvent", (event) => {
 })
 
 ipcMain.on("doc", async (event, data) => {
-    console.log("test yer reckon" + data)
-    savethefile(data.trim());
+    //White Space will need to be removed here
+    console.log(data)
+    saveTheFile(data);
 })
 
-function savethefile(thedata) {
+function saveTheFile(thedata) {
     let options = {
         title: "Select XML Files to export",
         buttonLabel: "Save",
