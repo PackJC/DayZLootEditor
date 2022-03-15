@@ -56,6 +56,8 @@
         </th>
         <th>usage</th>
         <th>value</th>
+        <th>usage1</th>
+        <th>value1</th>
         <th>tag</th>
     </tr>
     </thead>
@@ -65,7 +67,7 @@
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom border-dark border-top">
     <div class="text-center" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 PackJC Version 0.95
+        © 2022 PackJC Version 0.96
     </div>
 </footer>
 </html>
@@ -89,12 +91,18 @@
         for (let i = 0; i < loopCounter; i++) {
             let row = table.insertRow(0)
             let category = data.types.type[i]?.category?.[0].$?.name ?? "N / A"
-            let usage1 = data.types.type[i]?.usage?.[0].$?.name ?? "N / A"
-            let value1 = data.types.type[i]?.value?.[0].$?.name ?? "N / A"
+            let usage = data.types.type[i]?.usage?.[0].$?.name ?? "N / A"
+            let value = data.types.type[i]?.value?.[0].$?.name ?? "N / A"
+
+            let usage1 = data.types.type[i]?.usage?.[1]?.$?.name ?? "N / A"
+            let value1 = data.types.type[i]?.value?.[1]?.$?.name ?? "N / A"
+
             let tag = data.types.type[i].tag?.[0].$?.name ?? "N / A"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + tag + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + value1 + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage1 + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + value + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.deloot + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.crafted + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + data.types.type[i].flags[0].$.count_in_player + "</div>"
@@ -175,10 +183,12 @@
                 node.getElementsByTagName('category')[0]?.setAttribute("name", node.getElementsByTagName('category')[0]?.textContent)
                 node.getElementsByTagName('usage')[0]?.setAttribute("name", node.getElementsByTagName('usage')[0]?.textContent)
                 node.getElementsByTagName('value')[0]?.setAttribute("name", node.getElementsByTagName('value')[0]?.textContent)
-                //node.getElementsByTagName('usage')[1]?.setAttribute("name", node.getElementsByTagName('usage')[1]?.textContent)
-                //node.getElementsByTagName('value')[1]?.setAttribute("name", node.getElementsByTagName('value')[1]?.textContent)
-                //node.getElementsByTagName('usage')[2]?.setAttribute("name", node.getElementsByTagName('usage')[2]?.textContent)
-                //node.getElementsByTagName('value')[2]?.setAttribute("name", node.getElementsByTagName('value')[2]?.textContent)
+
+
+                //Set array to 0
+                //When these are used, need to be removed from them after they are made an attribute maybe
+                node.getElementsByTagName('usage1')[0]?.setAttribute("name", node.getElementsByTagName('usage1')[0]?.textContent)
+                node.getElementsByTagName('value1')[0]?.setAttribute("name", node.getElementsByTagName('value1')[0]?.textContent)
                 /*
                 Removes Undefined XML Nodes
                 */
@@ -194,7 +204,12 @@
                 if (node.getElementsByTagName('value')[0]?.textContent === "undefined" || node.getElementsByTagName('value')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('value')[0].remove()
                 }
-
+                if (node.getElementsByTagName('usage1')[0]?.textContent === "undefined" || node.getElementsByTagName('usage1')[0]?.textContent === "N / A") {
+                    node.getElementsByTagName('usage1')[0].remove()
+                }
+                if (node.getElementsByTagName('value1')[0]?.textContent === "undefined" || node.getElementsByTagName('value1')[0]?.textContent === "N / A") {
+                    node.getElementsByTagName('value1')[0].remove()
+                }
                 /*
                 Removes XML Node Text
                  */
