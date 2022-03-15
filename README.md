@@ -6,7 +6,7 @@
   <br>
  Created with Electron powered by Nodejs
 <br>
-Version 0.95
+Version 0.96
 </p>
 
 ## Reason
