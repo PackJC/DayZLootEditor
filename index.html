@@ -57,7 +57,10 @@
         <th>usage</th>
         <th>value</th>
         <th>usage1</th>
+        <th>usage2</th>
+        <th>usage3</th>
         <th>value1</th>
+        <th>value2</th>
         <th>tag</th>
     </tr>
     </thead>
@@ -95,11 +98,17 @@
             let value = data.types.type[i]?.value?.[0].$?.name ?? "N / A"
 
             let usage1 = data.types.type[i]?.usage?.[1]?.$?.name ?? "N / A"
+            let usage2 = data.types.type[i]?.usage?.[2]?.$?.name ?? "N / A"
+            let usage3 = data.types.type[i]?.usage?.[3]?.$?.name ?? "N / A"
             let value1 = data.types.type[i]?.value?.[1]?.$?.name ?? "N / A"
+            let value2 = data.types.type[i]?.value?.[2]?.$?.name ?? "N / A"
 
             let tag = data.types.type[i].tag?.[0].$?.name ?? "N / A"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + tag + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + value2 + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + value1 + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage3 + "</div>"
+            row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage2 + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage1 + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + value + "</div>"
             row.insertCell(0).innerHTML = "<div contentEditable='true'>" + usage + "</div>"
@@ -188,7 +197,10 @@
                 //Set array to 0
                 //When these are used, need to be removed from them after they are made an attribute maybe
                 node.getElementsByTagName('usage1')[0]?.setAttribute("name", node.getElementsByTagName('usage1')[0]?.textContent)
+                node.getElementsByTagName('usage2')[0]?.setAttribute("name", node.getElementsByTagName('usage2')[0]?.textContent)
+                node.getElementsByTagName('usage3')[0]?.setAttribute("name", node.getElementsByTagName('usage3')[0]?.textContent)
                 node.getElementsByTagName('value1')[0]?.setAttribute("name", node.getElementsByTagName('value1')[0]?.textContent)
+                node.getElementsByTagName('value2')[0]?.setAttribute("name", node.getElementsByTagName('value2')[0]?.textContent)
                 /*
                 Removes Undefined XML Nodes
                 */
@@ -207,12 +219,22 @@
                 if (node.getElementsByTagName('usage1')[0]?.textContent === "undefined" || node.getElementsByTagName('usage1')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('usage1')[0].remove()
                 }
+                if (node.getElementsByTagName('usage2')[0]?.textContent === "undefined" || node.getElementsByTagName('usage2')[0]?.textContent === "N / A") {
+                    node.getElementsByTagName('usage2')[0].remove()
+                }
+                if (node.getElementsByTagName('usage3')[0]?.textContent === "undefined" || node.getElementsByTagName('usage3')[0]?.textContent === "N / A") {
+                    node.getElementsByTagName('usage3')[0].remove()
+                }
                 if (node.getElementsByTagName('value1')[0]?.textContent === "undefined" || node.getElementsByTagName('value1')[0]?.textContent === "N / A") {
                     node.getElementsByTagName('value1')[0].remove()
+                }
+                if (node.getElementsByTagName('value2')[0]?.textContent === "undefined" || node.getElementsByTagName('value2')[0]?.textContent === "N / A") {
+                    node.getElementsByTagName('value2')[0].remove()
                 }
                 /*
                 Removes XML Node Text
                  */
+
                 if (node.getElementsByTagName('tag')[0]?.textContent !== "undefined") {
                     let tagNode = node?.getElementsByTagName('tag')[0]
                     if (tagNode) {
@@ -251,7 +273,6 @@
                 node.getElementsByTagName('deloot')[0]?.remove()
             }
         }
-        console.log(xmlDoc)
         return xmlDoc;
     }
 

@@ -87,6 +87,8 @@ function saveTheFile(thedata) {
             {name: 'XML', extensions: ['xml']}
         ],
     }
+    console.log(thedata)
+    console.log("end of the data")
     dialog.showSaveDialog(options).then((result) => {
         if (false === result.canceled) {
             fs.writeFile(result.filePath, thedata, () => {
