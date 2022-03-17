@@ -24,16 +24,12 @@ function createWindow() {
     })
     mainWindow.loadFile('index.html').then(r => r)
     //mainWindow.webContents.openDevTools()
-
-
-    mainWindow.once('ready-to-show', () => {
-        autoUpdater.checkForUpdatesAndNotify();
-    });
-
+    
 }
 
 app.whenReady().then(() => {
     createWindow()
+    autoUpdater.checkForUpdatesAndNotify();
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
