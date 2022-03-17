@@ -24,7 +24,7 @@ function createWindow() {
     })
     mainWindow.loadFile('index.html').then(r => r)
     //mainWindow.webContents.openDevTools()
-    
+
 }
 
 app.whenReady().then(() => {
