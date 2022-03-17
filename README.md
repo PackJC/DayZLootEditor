@@ -7,6 +7,7 @@
   <br>
  Created with Electron powered by Nodejs
 
+ ## Download
 <a href="https://github.com/PackJC/DayZLootEditor/releases/download/v1.0.0/dayz-loot-editor-Setup-1.0.0.exe" download>Download .exe</a>
   
 ## Reason
