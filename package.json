@@ -1,6 +1,6 @@
 {
   "name": "dayz-xml-editor-suite",
-  "version": "0.9.8.0",
+  "version": "0.9.80",
   "description": "DayZ XML Editor Suite",
   "main": "main.js",
   "scripts": {
