@@ -9,7 +9,10 @@
 
     "deploy": "electron-builder build --win --publish always"
   },
-  "repository": "https://github.com/PackJC/DayZLootEditor",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/PackJC/DayZLootEditor.git"
+  },
   "keywords": [
     "DayZ",
     "XML",
