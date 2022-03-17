@@ -1,26 +1,14 @@
 {
-  "name": "dayz-xml-editor-suite",
-  "version": "0.9.80",
+  "name": "dayz-loot-editor",
+  "version": "0.9.81",
   "description": "DayZ XML Editor Suite",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder build --win  --publish never",
+
     "deploy": "electron-builder build --win --publish always"
-
   },
-  "build": {
-    "directories":{
-      "output": "build"
-    },
-    "mac": {
-      "icon": "media/icon.ico"
-    },
-    "win": {
-      "icon": "media/icon.ico"
-    }
-  },
-
   "repository": "https://github.com/PackJC/DayZLootEditor",
   "keywords": [
     "DayZ",
