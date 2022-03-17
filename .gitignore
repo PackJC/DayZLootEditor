@@ -4,3 +4,4 @@ electron-builder.yml
 *.yaml
 dist/
 build/
+electron-builder.yml
