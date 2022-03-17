@@ -193,15 +193,45 @@ function getXMLTable() {
                     categoryNode.textContent = ""
                 }
             }
+            if (node.getElementsByTagName('value1')[0]?.textContent !== "undefined") {
+                let categoryNode = node?.getElementsByTagName('value1')[0]
+                if (categoryNode) {
+                    categoryNode.textContent = ""
+                }
+            }
+            if (node.getElementsByTagName('value2')[0]?.textContent !== "undefined") {
+                let categoryNode = node?.getElementsByTagName('value2')[0]
+                if (categoryNode) {
+                    categoryNode.textContent = ""
+                }
+            }
             if (node.getElementsByTagName('usage')[0]?.textContent !== "undefined") {
                 let categoryNode = node?.getElementsByTagName('usage')[0]
                 if (categoryNode) {
                     categoryNode.textContent = ""
                 }
             }
+            if (node.getElementsByTagName('usage1')[0]?.textContent !== "undefined") {
+                let categoryNode = node?.getElementsByTagName('usage1')[0]
+                if (categoryNode) {
+                    categoryNode.textContent = ""
+                }
+            }
+            if (node.getElementsByTagName('usage2')[0]?.textContent !== "undefined") {
+                let categoryNode = node?.getElementsByTagName('usage2')[0]
+                if (categoryNode) {
+                    categoryNode.textContent = ""
+                }
+            }
+            if (node.getElementsByTagName('usage3')[0]?.textContent !== "undefined") {
+                let categoryNode = node?.getElementsByTagName('usage3')[0]
+                if (categoryNode) {
+                    categoryNode.textContent = ""
+                }
+            }
         }
     }
-
+    //removes flags
     for (let h = 0; h < childNodes.length; h++) {
         if (childNodes[h].nodeType !== Node.TEXT_NODE) {
             node = childNodes[h];

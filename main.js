@@ -30,7 +30,7 @@ function createWindow() {
         mainWindow.webContents.send('update_downloaded');
     });
     mainWindow.loadFile('index.html').then(r => r)
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
 }
 
@@ -81,8 +81,6 @@ ipcMain.on("getFileEvent", (event) => {
 })
 
 ipcMain.on("doc", async (event, data) => {
-    //White Space will need to be removed here
-    console.log(data)
     saveTheFile(data);
 })
 
@@ -96,8 +94,13 @@ function saveTheFile(thedata) {
         defaultPath: app.getPath('desktop'),
         filters: [{name: 'XML', extensions: ['xml']}],
     }
-    console.log(thedata)
+    //removes white spaces create when removing excess xml elements
+    thedata = thedata.replace(/^\s*\n/gm, "");
+    console.log(thedata.trim())
     console.log("end of the data")
+
+
+
     dialog.showSaveDialog(options).then((result) => {
         if (false === result.canceled) {
             fs.writeFile(result.filePath, thedata, () => {
