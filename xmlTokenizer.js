@@ -4,9 +4,8 @@ Index Page Begin
 
 
 //Import
-const {ipcRenderer, app} = require("electron");
+const {ipcRenderer} = require("electron");
 const xml2js = require("xml2js");
-const electron = require("electron");
 const version = document.getElementById('version');
 
 ipcRenderer.send('app_version');
@@ -229,6 +228,7 @@ function getXMLTable() {
                     categoryNode.textContent = ""
                 }
             }
+
         }
     }
     //removes flags

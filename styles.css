@@ -22,7 +22,19 @@ td {
     margin-left: auto;
 
 }
+.settingLinks a{
+    padding: 1rem;
+    margin: 5rem;
+    top: 50%;
+    left: 50%;
+    width: 25%;
+    color:black;
 
+}
+
+.settingLinks{
+
+}
 #notification {
     position: fixed;
     bottom:50%;

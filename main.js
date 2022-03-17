@@ -13,7 +13,8 @@ try {
 let localDataFile;
 
 function createWindow() {
-    const mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow(
+        {
         width: 1200, height: 800, autoHideMenuBar: true, icon: './media/DayZLogo.PNG', webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
@@ -30,13 +31,13 @@ function createWindow() {
         mainWindow.webContents.send('update_downloaded');
     });
     mainWindow.loadFile('index.html').then(r => r)
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
 
 }
 
 app.whenReady().then(() => {
     createWindow()
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdatesAndNotify().then(r => r);
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
@@ -96,10 +97,14 @@ function saveTheFile(thedata) {
     }
     //removes white spaces create when removing excess xml elements
     thedata = thedata.replace(/^\s*\n/gm, "");
-    console.log(thedata.trim())
+    console.log(thedata)
+    thedata = thedata.replace(/usage1/g, "usage");
+    thedata = thedata.replace(/usage2/g, "usage");
+    thedata = thedata.replace(/usage3/g, "usage");
+    thedata = thedata.replace(/value1/g, "value");
+    thedata = thedata.replace(/value2/g, "value");
+
     console.log("end of the data")
-
-
 
     dialog.showSaveDialog(options).then((result) => {
         if (false === result.canceled) {
