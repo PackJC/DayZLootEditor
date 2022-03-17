@@ -12,8 +12,6 @@
 <body>
 
 
-
-
 <div id="notification" class="hidden">
     <p id="message"></p>
     <button id="close-button" onClick="closeNotification()">
@@ -23,9 +21,6 @@
         Restart
     </button>
 </div>
-
-
-
 
 
 <nav class="navbar navbar-expand navbar-light border-dark border-bottom bg-dark"
@@ -54,45 +49,44 @@
 </div>
 <br>
 <div class="table-responsive">
-<table class="table table-striped" id="myTable">
-    <thead>
-    <tr class="justify-content-center">
-        <th title="">name</th>
-        <th title="Amount of the item allowed on the entire map">nominal</th>
-        <th title="Lifetime of an item once it is spawned in seconds">lifetime</th>
-        <th title="Amount of time that will need to pass before an item is allowed to spawn again">restock</th>
-        <th title="Amount of an item that will spawn on the map">min</th>
-        <th title="Minimum quantity of consumable within the item">quantmin</th>
-        <th title="Maximum quantity of consumable within the item">quantmax</th>
-        <th title="category">category</th>
-        <th title="Determines the spawn chance of an item">cost</th>
-        <th title="Count for this weapon will include inventory of vehicles towards Max">count_in_cargo</th>
-        <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">
-            count_in_hoarder
-        </th>
-        <th title="Count for this weapon will include items in/on map towards Max.">count_in_map</th>
-        <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">
-            count_in_player
-        </th>
-        <th title="Used only to mark player craftable items">crafted</th>
-        <th title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">deloot
-        </th>
-        <th>usage</th>
-        <th>usage1</th>
-        <th>usage2</th>
-        <th>usage3</th>
-        <th>value</th>
-        <th>value1</th>
-        <th>value2</th>
-        <th>tag</th>
-    </tr>
-    </thead>
-    <tbody id="myTBody">
-    </tbody>
-</table>
+    <table class="table table-striped" id="myTable">
+        <thead>
+        <tr class="justify-content-center">
+            <th title="">name</th>
+            <th title="Amount of the item allowed on the entire map">nominal</th>
+            <th title="Lifetime of an item once it is spawned in seconds">lifetime</th>
+            <th title="Amount of time that will need to pass before an item is allowed to spawn again">restock</th>
+            <th title="Amount of an item that will spawn on the map">min</th>
+            <th title="Minimum quantity of consumable within the item">quantmin</th>
+            <th title="Maximum quantity of consumable within the item">quantmax</th>
+            <th title="category">category</th>
+            <th title="Determines the spawn chance of an item">cost</th>
+            <th title="Count for this weapon will include inventory of vehicles towards Max">count_in_cargo</th>
+            <th title="Count for this weapon will include inventory of containers that can be moved/placed/built by a player (barrels/sea chest/tent/backpack/protector case) towards Max">
+                count_in_hoarder
+            </th>
+            <th title="Count for this weapon will include items in/on map towards Max.">count_in_map</th>
+            <th title="Count for this weapon will include Player Inventory and Player Hands towards weapon Max">
+                count_in_player
+            </th>
+            <th title="Used only to mark player craftable items">crafted</th>
+            <th title="Dynamic Event Loot, the items and weapons that usually spawn around Helicopter Crash Sites">
+                deloot
+            </th>
+            <th>usage</th>
+            <th>usage1</th>
+            <th>usage2</th>
+            <th>usage3</th>
+            <th>value</th>
+            <th>value1</th>
+            <th>value2</th>
+            <th>tag</th>
+        </tr>
+        </thead>
+        <tbody id="myTBody">
+        </tbody>
+    </table>
 </div>
-
-
 </body>
 <footer class="bg-dark text-center text-warning fixed-bottom">
     <div class="text-center" id="version" style="background-color: rgba(0, 0, 0, 0.2);">
@@ -101,7 +95,4 @@
 </html>
 
 <script src="xmlTokenizer.js">
-
-    //jQuery for table search box
-
 </script>

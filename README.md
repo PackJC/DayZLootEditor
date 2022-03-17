@@ -5,9 +5,7 @@
   A GUI made in Electron to configure DayZ Standalone Loot Tables
   <br>
  Created with Electron powered by Nodejs
-<br>
-Version 0.96
-</p>
+
 
 ## Reason
 It's hard editing loot tables for DayZ. Did you know there are over 20,000 items to adjust values for in the game?

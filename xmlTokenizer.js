@@ -80,7 +80,7 @@ function checkJSON() {
     ipcRenderer.send("checkJSON")
 }
 
-function sendXML(){
+function sendXML() {
     let sXML = new XMLSerializer().serializeToString(getXMLTable());
     ipcRenderer.send("doc", sXML);
 }
@@ -103,8 +103,8 @@ function getXMLTable() {
         xmlNodes[i].childNodes[1].remove()
         let newText = xmlDoc.createElement("flags");
         xmlNodes[i].appendChild(newText)
-        for(let x = 0; x < xmlNodes.length; x++){
-            if(xmlNodes?.[i]?.childNodes[i] === undefined){
+        for (let x = 0; x < xmlNodes.length; x++) {
+            if (xmlNodes?.[i]?.childNodes[i] === undefined) {
                 xmlNodes?.[i]?.childNodes?.[i]?.remove()
             }
         }
@@ -134,7 +134,6 @@ function getXMLTable() {
             node.getElementsByTagName('usage1')[0]?.setAttribute("name", node.getElementsByTagName('usage1')[0]?.textContent)
             node.getElementsByTagName('usage2')[0]?.setAttribute("name", node.getElementsByTagName('usage2')[0]?.textContent)
             node.getElementsByTagName('usage3')[0]?.setAttribute("name", node.getElementsByTagName('usage3')[0]?.textContent)
-
 
             node.getElementsByTagName('value')[0]?.setAttribute("name", node.getElementsByTagName('value')[0]?.textContent)
 
@@ -242,6 +241,7 @@ ipcRenderer.on('update_downloaded', () => {
 function closeNotification() {
     notification.classList.add('hidden');
 }
+
 function restartApp() {
     ipcRenderer.send('restart_app');
 }

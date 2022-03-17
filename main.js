@@ -3,7 +3,7 @@ const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require('path')
 const fs = require('fs');
 const xml2js = require('xml2js');
-const { autoUpdater } = require('electron-updater');
+const {autoUpdater} = require('electron-updater');
 
 try {
     require('electron-reloader')(module)
@@ -14,11 +14,7 @@ let localDataFile;
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 800,
-        autoHideMenuBar: true,
-        icon: './media/DayZLogo.PNG',
-        webPreferences: {
+        width: 1200, height: 800, autoHideMenuBar: true, icon: './media/DayZLogo.PNG', webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
             contextIsolation: false,
@@ -27,7 +23,8 @@ function createWindow() {
         }
     })
     mainWindow.loadFile('index.html').then(r => r)
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
+
 
     mainWindow.once('ready-to-show', () => {
         autoUpdater.checkForUpdatesAndNotify();
@@ -47,7 +44,7 @@ app.on('window-all-closed', function () {
 })
 
 ipcMain.on('app_version', (event) => {
-    event.sender.send('app_version', { version: app.getVersion() });
+    event.sender.send('app_version', {version: app.getVersion()});
 });
 
 
@@ -57,16 +54,13 @@ ipcMain.on("getFileEvent", (event) => {
         buttonLabel: "Import .XML File",
         defaultPath: app.getPath('desktop'),
         properties: ['openFile'],
-        filters: [
-            {name: 'XML', extensions: ['xml']}
-        ],
+        filters: [{name: 'XML', extensions: ['xml']}],
     }
     dialog.showOpenDialog(options).then((result) => {
         let pages = result.filePaths
         let filePath = result.filePaths.toString()
         if (false === result.canceled) {
-            const data = fs.readFileSync(filePath,
-                {encoding: 'utf8', flag: 'r'});
+            const data = fs.readFileSync(filePath, {encoding: 'utf8', flag: 'r'});
             xml2js.parseString(data, (err, result) => {
                 if (err) {
                     throw err;
@@ -102,9 +96,7 @@ function saveTheFile(thedata) {
         title: "Select XML Files to export",
         buttonLabel: "Save",
         defaultPath: app.getPath('desktop'),
-        filters: [
-            {name: 'XML', extensions: ['xml']}
-        ],
+        filters: [{name: 'XML', extensions: ['xml']}],
     }
     console.log(thedata)
     console.log("end of the data")
@@ -117,6 +109,7 @@ function saveTheFile(thedata) {
         }
     })
 }
+
 ipcMain.on('restart_app', () => {
     autoUpdater.quitAndInstall();
 });

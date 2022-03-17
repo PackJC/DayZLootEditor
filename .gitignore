@@ -1,2 +1,12 @@
 node_modules
 electron-builder.yml
+*.yml
+*.yaml
+dist/dayz-xml-editor-suite Setup 0.9.8.exe
+dist/win-unpacked/locales/ro.pak
+dist/win-unpacked/locales/pt-PT.pak
+dist/win-unpacked/locales/ru.pak
+dist/win-unpacked/chrome_200_percent.pak
+dist/win-unpacked/d3dcompiler_47.dll
+dist/win-unpacked/dayz-xml-editor-suite.exe
+dist/win-unpacked/chrome_100_percent.pak
