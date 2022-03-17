@@ -25,14 +25,15 @@ td {
 
 #notification {
     position: fixed;
-    bottom: 50%;
+    bottom:50%;
     left: 50%;
     width: 200px;
     padding: 20px;
     border-radius: 5px;
-    background-color: red;
+    background-color: darkred;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
+    display: none;
 }
