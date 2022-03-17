@@ -22,6 +22,13 @@ function createWindow() {
             nodeIntegrationInWorker: true,
         }
     })
+
+    autoUpdater.on('update-available', () => {
+        mainWindow.webContents.send('update_available');
+    });
+    autoUpdater.on('update-downloaded', () => {
+        mainWindow.webContents.send('update_downloaded');
+    });
     mainWindow.loadFile('index.html').then(r => r)
     //mainWindow.webContents.openDevTools()
 
@@ -79,12 +86,7 @@ ipcMain.on("doc", async (event, data) => {
     saveTheFile(data);
 })
 
-autoUpdater.on('update-available', () => {
-    mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', () => {
-    mainWindow.webContents.send('update_downloaded');
-});
+
 
 
 function saveTheFile(thedata) {
