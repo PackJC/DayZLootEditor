@@ -3,6 +3,7 @@ const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require('path')
 const fs = require('fs');
 const xml2js = require('xml2js');
+const { autoUpdater } = require('electron-updater');
 
 try {
     require('electron-reloader')(module)
@@ -27,6 +28,11 @@ function createWindow() {
     })
     mainWindow.loadFile('index.html').then(r => r)
     mainWindow.webContents.openDevTools()
+
+    mainWindow.once('ready-to-show', () => {
+        autoUpdater.checkForUpdatesAndNotify();
+    });
+
 }
 
 app.whenReady().then(() => {
@@ -39,6 +45,11 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 })
+
+ipcMain.on('app_version', (event) => {
+    event.sender.send('app_version', { version: app.getVersion() });
+});
+
 
 ipcMain.on("getFileEvent", (event) => {
     let options = {
@@ -78,6 +89,14 @@ ipcMain.on("doc", async (event, data) => {
     saveTheFile(data);
 })
 
+autoUpdater.on('update-available', () => {
+    mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update_downloaded');
+});
+
+
 function saveTheFile(thedata) {
     let options = {
         title: "Select XML Files to export",
@@ -98,3 +117,6 @@ function saveTheFile(thedata) {
         }
     })
 }
+ipcMain.on('restart_app', () => {
+    autoUpdater.quitAndInstall();
+});

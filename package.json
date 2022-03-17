@@ -1,10 +1,13 @@
 {
   "name": "dayz-xml-editor-suite",
-  "version": "0.9.5",
+  "version": "0.9.8",
   "description": "DayZ XML Editor Suite",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+
   },
   "repository": "https://github.com/PackJC/DayZLootEditor",
   "keywords": [
@@ -18,7 +21,8 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "chokidar": "^3.5.3",
-    "electron": "^16.0.7",
+    "electron": "^17.1.2",
+    "electron-builder": "^22.14.13",
     "electron-packager": "^15.4.0",
     "electron-reloader": "^1.2.1",
     "file-saver": "^2.0.5",
@@ -27,6 +31,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
+    "electron-updater": "^4.6.5",
     "jquery": "^3.6.0",
     "open": "^8.4.0",
     "xml2js": "^0.4.23"
