@@ -7,7 +7,9 @@
   <br>
  Created with Electron powered by Nodejs
 
-
+ ## Download
+<a href="https://github.com/PackJC/DayZLootEditor/releases/download/v1.0.0/dayz-loot-editor-Setup-1.0.0.exe" download>Download .exe</a>
+  
 ## Reason
 It's hard editing loot tables for DayZ. Did you know there are over 20,000 items to adjust values for in the game?
 This tool makes it very easy for users to simply search by name for the item they're looking for. Sort items numerically, or alphabetically - both ways you can do with this simple tool.
