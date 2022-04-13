@@ -1,12 +1,8 @@
-/*
-Index Page Begin
- */
-
-
 //Import
 const {ipcRenderer} = require("electron");
 const xml2js = require("xml2js");
 const version = document.getElementById('version');
+let xmlDoc;
 
 ipcRenderer.send('app_version');
 ipcRenderer.on('app_version', (event, arg) => {
@@ -14,10 +10,7 @@ ipcRenderer.on('app_version', (event, arg) => {
     version.innerText = '©2022 PackJC v' + arg.version;
 });
 
-
-let xmlDoc;
 //Event Listeners
-
 document.getElementById("getFile").addEventListener("click", getFileFunction);
 document.getElementById("saveFile").addEventListener("click", sendXML);
 document.getElementById("help").addEventListener("click", getHelp);
@@ -83,7 +76,6 @@ function sendXML() {
     let sXML = new XMLSerializer().serializeToString(getXMLTable());
     ipcRenderer.send("doc", sXML);
 }
-
 
 function getXMLTable() {
     const parser = new DOMParser()
